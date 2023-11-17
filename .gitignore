@@ -1,3 +1,11 @@
+# Folders
+Debug
+Release
+
+# IDE files
+.cproject
+.settings
+
 # Prerequisites
 *.d
 
