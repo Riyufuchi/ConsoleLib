@@ -2,7 +2,7 @@
 
 - [About](#about)
 - [Compilation](#compilation)
-- [Project guide](#project guide)
+- [Project guide](#project-guide)
 - [Donate](#donate)
 
 ## About
