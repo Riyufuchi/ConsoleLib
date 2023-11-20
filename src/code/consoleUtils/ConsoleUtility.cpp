@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 13.10.2023
+// Last Edit   : 20.11.2023
 //============================================================================
 
 #include "../../inc/ConsoleUtility.h"
@@ -94,7 +94,7 @@ void ConsoleUtility::createManual(std::string* args, int lenght)
 			columnWidth = xIndex;
 		xIndex = 0;
 	}
-	char line[(lineTmp = lineLenght + columnWidth)];
+	char line[(lineTmp = lineLenght + columnWidth + 20)];
 	for(xIndex = 0; xIndex < lineTmp; xIndex++)
 		line[xIndex] = '-';
 	std::cout << line << "\n";
