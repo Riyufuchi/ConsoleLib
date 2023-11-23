@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 20.11.2023
+// Last Edit   : 23.11.2023
 //============================================================================
 
 #include "../../inc/ConsoleUtility.h"
@@ -74,6 +74,24 @@ int ConsoleUtility::basicMenu(int lenght, const char* menu[])
 	}
 	int result = getIntSafe(1, lenght) - 1;
 	return result;
+}
+
+void ConsoleUtility::listFilesInFolder(std::string workspacePath)
+{
+	std::cout << "\n";
+	try
+	{
+		std::filesystem::current_path(workspacePath);
+		for (const auto& entry : std::filesystem::directory_iterator("."))
+		{
+			std::cout << entry.path().filename() << "\n";
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+	std::cout << "\n";
 }
 
 //args[x] = "arg| action";

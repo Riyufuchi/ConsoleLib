@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 13.10.2023
+// Last Edit   : 23.11.2023
 //============================================================================
 
 #ifndef _CONSOLEUTILITY_H_
@@ -10,6 +10,7 @@
 
 #include <string.h>
 #include <iostream>
+#include <filesystem>
 
 /**
  * This class helps with console interactions
@@ -45,6 +46,7 @@ public:
 	static void header(std::string);
 	static int basicMenu(int lenght, const char* menu[]);
 	static void createManual(std::string* args, int lenght);
+	static void listFilesInFolder(std::string workspacePath);
 	~ConsoleUtility();
 };
 }
