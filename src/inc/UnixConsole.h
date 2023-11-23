@@ -20,13 +20,19 @@ class UnixConsole : public IConsole
 {
 public:
 	UnixConsole();
+	void resetTextColor() override;
+	// Setters
+	void setDefaultTextColor(Colors::Color color);
+	void setTextColor(Colors::Color color) override;
+	// Getters
+	Colors::Color getDefaultTextColor();
+	// Write methods
 	void writeText(const char* text) override;
 	void writeText(std::string text) override;
 	void writeText(Colors::Color color, std::string text) override;
 	void writeTextLine(Colors::Color color, std::string text) override;
 	void writeText(short int r, short int g, short int b, std::string text) override;
 	void writeTextLine(short int r, short int g, short int b, std::string text) override;
-	void setTextColor(Colors::Color color);
 	~UnixConsole();
 private:
 	Colors::Color mainColor;

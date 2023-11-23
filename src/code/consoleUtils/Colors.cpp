@@ -37,6 +37,7 @@ Colors::Color Colors::getColor(ColorPallete color)
 		case AUSTRALIUM_GOLD: return newColor(231, 181, 59);
 		case No_216_190_216: return newColor(216, 190, 216);
 		case SMARAGDINE: return newColor(74,153,118);
+		case CONSOLE_ART_UNIX_DEFAULT: return newColor(5, 195, 221);
 		default: return newColor(255, 215, 0);
 	}
 }

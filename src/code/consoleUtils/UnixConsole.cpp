@@ -15,6 +15,22 @@ UnixConsole::UnixConsole()
 	mainColor.green = 195;
 	mainColor.blue = 221;
 }
+void UnixConsole::resetTextColor()
+{
+	std::cout << "\e[m";
+}
+void UnixConsole::setTextColor(Colors::Color color)
+{
+	std::cout << "\e[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m";
+}
+void UnixConsole::setDefaultTextColor(Colors::Color color)
+{
+	mainColor = color;
+}
+Colors::Color UnixConsole::getDefaultTextColor()
+{
+	return mainColor;
+}
 //TODO: Find out most efficient method (printf, just cout, ostringstream)
 void UnixConsole::writeText(short int r, short int g, short int b, std::string text)
 {
@@ -41,10 +57,6 @@ void UnixConsole::writeTextLine(Colors::Color color, std::string text)
 void UnixConsole::writeText(const char* text)
 {
 	writeText(mainColor.red, mainColor.green, mainColor.blue, text);
-}
-void UnixConsole::setTextColor(Colors::Color color)
-{
-	mainColor = color;
 }
 UnixConsole::~UnixConsole()
 {

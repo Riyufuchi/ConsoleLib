@@ -26,6 +26,7 @@ public:
 		AUSTRALIUM_GOLD,
 		No_216_190_216,
 		SMARAGDINE,
+		CONSOLE_ART_UNIX_DEFAULT,
 		COLOR_COUNT  // This can be used to determine the size of the enum
 	};
 	typedef struct Color // This way, there is no need to cast, because uint8_t would be treated as char not numerical value
@@ -46,13 +47,13 @@ public:
 		"PINK_AS_HELL",
 		"AUSTRALIUM_GOLD",
 		"No_216_190_216",
-		"SMARAGDINE"
+		"SMARAGDINE",
+		"CONSOLE_ART_UNIX_DEFAULT"
 	};
 	Colors();
 	virtual ~Colors();
 	static Color getColor(ColorPallete color);
 	static Color newColor(short int r, short int g, short int b);
 };
-
 } /* namespace LuaController */
 #endif /* SRC_INC_COLORS_H_ */

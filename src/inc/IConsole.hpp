@@ -17,6 +17,11 @@ namespace ConsoleUtils
 class IConsole
 {
 public:
+
+	virtual void resetTextColor() = 0;
+	// Setters
+	virtual void setTextColor(Colors::Color color) = 0;
+	// Write methods
 	virtual void writeText(const char* text) = 0;
 	virtual void writeText(std::string text) = 0;
 	virtual void writeText(Colors::Color color, std::string text) = 0;
