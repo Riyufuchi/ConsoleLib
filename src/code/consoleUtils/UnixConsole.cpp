@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : 20.07.2020
-// Last Edit   : 23.11.2023
+// Last Edit   : 28.11.2023
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -31,32 +31,24 @@ Colors::Color UnixConsole::getDefaultTextColor()
 {
 	return mainColor;
 }
-//TODO: Find out most efficient method (printf, just cout, ostringstream)
-void UnixConsole::writeText(short int r, short int g, short int b, std::string text)
-{
-	std::cout << "\e[38;2;" << r << ";" << g << ";" << b << "m" << text << "\e[m";
-}
-void UnixConsole::writeTextLine(short int r, short int g, short int b, std::string text)
-{
-	std::cout << "\e[38;2;" << r << ";" << g << ";" << b << "m" << text << "\e[m\n";
-}
-void UnixConsole::writeText(std::string text)
+void UnixConsole::out(const char* text)
 {
 	std::ostringstream t;
-	t << "\e[38;2;" << mainColor.red << ";" << mainColor.green << ";" << mainColor.blue << "m" << text << "\e[m\n";
+	t << "\e[38;2;" << mainColor.red << ";" << mainColor.green << ";" << mainColor.blue << "m" << text << "\e[m";
 	std::cout << t.str();
 }
-void UnixConsole::writeText(Colors::Color color, std::string text)
+void UnixConsole::out(std::string text)
+{
+	std::cout << "\e[38;2;" << mainColor.red << ";" << mainColor.green << ";" << mainColor.blue << "m" << text << "\e[m";
+}
+void UnixConsole::out(short int r, short int g, short int b, std::string text)
+{
+	std::cout << "\e[38;2;" << r << ";" << g << ";" << b << "m" << text << "\e[m";
+
+}
+void UnixConsole::out(Colors::Color color, std::string text)
 {
 	std::cout << "\e[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m" << text << "\e[m";
-}
-void UnixConsole::writeTextLine(Colors::Color color, std::string text)
-{
-	writeTextLine(color.red, color.green, color.blue, text);
-}
-void UnixConsole::writeText(const char* text)
-{
-	writeText(mainColor.red, mainColor.green, mainColor.blue, text);
 }
 UnixConsole::~UnixConsole()
 {
