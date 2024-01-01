@@ -2,19 +2,19 @@
 // Name        : Colors
 // Author      : Riyufuchi
 // Created on  : 20.11.2021
-// Last Edit   : 23.11.2023
+// Last Edit   : 19.12.2023
 //============================================================================
-#include "../../inc/Colors.h"
+#include "../../inc/ColorUtils.h"
 
 namespace ConsoleUtils
 {
-Colors::Colors()
+ColorUtils::ColorUtils()
 {
 }
-Colors::~Colors()
+ColorUtils::~ColorUtils()
 {
 }
-Colors::Color Colors::newColor(short int r, short int g, short int b)
+Color ColorUtils::newColor(short int r, short int g, short int b)
 {
 	Color color;
 	color.red = r;
@@ -22,7 +22,7 @@ Colors::Color Colors::newColor(short int r, short int g, short int b)
 	color.blue = b;
 	return color;
 }
-Colors::Color Colors::getColor(ColorPallete color)
+Color ColorUtils::getColor(ColorPallete color)
 {
 	switch (color)
 	{
@@ -38,6 +38,8 @@ Colors::Color Colors::getColor(ColorPallete color)
 		case No_216_190_216: return newColor(216, 190, 216);
 		case SMARAGDINE: return newColor(74,153,118);
 		case CONSOLE_ART_UNIX_DEFAULT: return newColor(5, 195, 221);
+		case APERTURE_ORANGE: return newColor(255, 157, 0);
+		case TERMINAL_FG: return newColor(211, 215, 207);
 		default: return newColor(255, 215, 0);
 	}
 }

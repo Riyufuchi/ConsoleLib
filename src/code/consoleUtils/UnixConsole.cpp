@@ -2,46 +2,49 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : 20.07.2020
-// Last Edit   : 08.12.2023
+// Last Edit   : 19.12.2023
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
 #include "../../inc/UnixConsole.h"
 namespace ConsoleUtils
 {
-UnixConsole::UnixConsole()
+UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})
 {
-	mainColor.red = 5;
-	mainColor.green = 195;
-	mainColor.blue = 221;
+	setDefaultTextColor(defaultColor);
 }
 void UnixConsole::resetTextColor()
 {
 	std::cout << "\e[m";
 }
-void UnixConsole::setTextColor(Colors::Color color)
+void UnixConsole::defaultTextColor()
+{
+	std::cout << defColorEscCode;
+}
+void UnixConsole::setTextColor(Color color)
 {
 	std::cout << "\e[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m";
 }
-void UnixConsole::setDefaultTextColor(Colors::Color color)
+void UnixConsole::setDefaultTextColor(Color color)
 {
-	mainColor = color;
+	defaultColor = color;
+	std::ostringstream t;
+	t << "\e[38;2;" << defaultColor.red << ";" << defaultColor.green << ";" << defaultColor.blue << "m";
+	defColorEscCode = t.str();
 }
-Colors::Color UnixConsole::getDefaultTextColor()
+Color UnixConsole::getDefaultTextColor()
 {
-	return mainColor;
+	return defaultColor;
 }
 void UnixConsole::out(const char* text)
 {
-	std::ostringstream t;
-	t << "\e[38;2;" << mainColor.red << ";" << mainColor.green << ";" << mainColor.blue << "m" << text << "\e[m";
-	std::cout << t.str();
+	std::cout << defColorEscCode << text << "\e[m";
 }
 void UnixConsole::out(std::string text)
 {
-	std::cout << "\e[38;2;" << mainColor.red << ";" << mainColor.green << ";" << mainColor.blue << "m" << text << "\e[m";
+	std::cout << defColorEscCode << text << "\e[m";
 }
-void UnixConsole::out(Colors::Color color, std::string text)
+void UnixConsole::out(Color color, std::string text)
 {
 	std::cout << "\e[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m" << text << "\e[m";
 }
@@ -54,7 +57,7 @@ void UnixConsole::err(std::string text)
 {
 	std::cerr << "\e[38;2;" << 255 << ";0;0m" << text << "\e[m";
 }
-void UnixConsole::err(Colors::Color color, std::string text)
+void UnixConsole::err(Color color, std::string text)
 {
 	std::cerr << "\e[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m" << text << "\e[m";
 }

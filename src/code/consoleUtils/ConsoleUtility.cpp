@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 08.12.2023
+// Last Edit   : 19.12.2023
 //============================================================================
 
 #include "../../inc/ConsoleUtility.h"
@@ -64,6 +64,14 @@ void ConsoleUtility::header(std::string text)
 		line += "-";
 	}
 	std::cout << line << "\n" << text << "\n" << line << std::endl;
+}
+
+void ConsoleUtility::header(std::string text, IConsole& console, Color textColor)
+{
+	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
+	console.setTextColor(textColor);
+	console.out(line + text + "\n" + line);
+	console.resetTextColor();
 }
 
 int ConsoleUtility::basicMenu(int lenght, const char* menu[])
