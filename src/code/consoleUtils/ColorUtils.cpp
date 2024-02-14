@@ -1,8 +1,8 @@
 //============================================================================
-// Name        : Colors
+// Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : 20.11.2021
-// Last Edit   : 19.12.2023
+// Last Edit   : 14.02.2024
 //============================================================================
 #include "../../inc/ColorUtils.h"
 
@@ -16,11 +16,7 @@ ColorUtils::~ColorUtils()
 }
 Color ColorUtils::newColor(short int r, short int g, short int b)
 {
-	Color color;
-	color.red = r;
-	color.green = g;
-	color.blue = b;
-	return color;
+	return Color{r, g, b};
 }
 Color ColorUtils::getColor(ColorPallete color)
 {
