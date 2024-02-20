@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 14.02.2024
+// Last Edit   : 15.02.2024
 //============================================================================
 
 #include "../../inc/ConsoleUtility.h"
@@ -122,21 +122,13 @@ void ConsoleUtility::createManual(std::string* args, int lenght)
 		if (pipeIndex > static_cast<size_t>(columnWidth))
 			columnWidth = pipeIndex;
 	}
-	std::string line(lineLenght + columnWidth, '-');
+	std::string line((lineLenght + columnWidth), '-');
 	std::cout << line << "\n";
 	for (int y = 0; y < lenght; y++)
 	{
-		x = 0;
-		while (args[y][x] != '|')
-			std::cout << args[y][x++];
+		std::cout << args[y].substr(0, x = args[y].find("|"));
 		std::cout << std::string(columnWidth - x, ' ');
-		if (args[y][x] == '|')
-			x++;
-		std::cout << " |";
-		lineLenght = args[y].length();
-		for (; x < lineLenght; x++)
-			std::cout << args[y][x];
-		std::cout << "\n";
+		std::cout << " |" << args[y].substr(++x) << "\n";
 	}
 	std::cout << line << "\n";
 }

@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : 20.07.2020
-// Last Edit   : 19.12.2023
+// Last Edit   : 20.02.2024
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -68,5 +68,6 @@ void UnixConsole::err(short int r, short int g, short int b, std::string text)
 }
 UnixConsole::~UnixConsole()
 {
+	std::cout << "Destructed Unix console\n";
 }
 }
