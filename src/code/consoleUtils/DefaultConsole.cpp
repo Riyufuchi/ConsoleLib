@@ -14,19 +14,19 @@ DefaultConsole::DefaultConsole()
 }
 void DefaultConsole::resetTextColor()
 {
-	std::cout << "Nothing to reset\n";
+	//std::cout << "Nothing to reset\n";
 }
 void DefaultConsole::defaultTextColor()
 {
-	std::cout << "Default console have already output in default color\n";
+	//std::cout << "Default console have already output in default color\n";
 }
 void DefaultConsole::setTextColor(Color color)
 {
-	std::cout << "Color [" << color.red << ";" << color.green << ";" << color.blue << "] can't be set by default console\n";
+	//std::cout << "Color [" << color.red << ";" << color.green << ";" << color.blue << "] can't be set by default console\n";
 }
 void DefaultConsole::setDefaultTextColor(Color color)
 {
-	setTextColor(color);
+	//setTextColor(color);
 }
 void DefaultConsole::out(const char* text)
 {
