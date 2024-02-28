@@ -88,7 +88,7 @@ void ConsoleUtility::listFilesInFolder(std::string workspacePath)
 {
 	std::cout << "\n";
 	if (workspacePath == "")
-		workspacePath = std::filesystem::current_path();
+		workspacePath = std::filesystem::current_path().generic_string();
 	try
 	{
 		for (const auto& entry : std::filesystem::directory_iterator(workspacePath))
