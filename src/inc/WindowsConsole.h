@@ -5,12 +5,12 @@
 // Last Edit   : 28.02.2024
 //============================================================================
 
+#ifdef _WIN32
 #ifndef _WINDOWS_CONSOLE_H_
 #define _WINDOWS_CONSOLE_H_
 
 #include <iostream>
 #include <windows.h>
-//#include <fcntl.h>
 #include <io.h>
 
 #include "IConsole.hpp"
@@ -20,7 +20,6 @@ namespace ConsoleUtils
 	class WindowsConsole : public IConsole
 	{
 	private:
-		const int TEMP_COLOR_INDEX = 4;
 		const int DEFAULT_COLOR_INDEX = 3;
 		const int CURRENT_COLOR_INDEX = 2;
 		Color defaultColor;
@@ -46,4 +45,5 @@ namespace ConsoleUtils
 		void err(short int r, short int g, short int b, std::string text) override;
 	};
 }
+#endif
 #endif
