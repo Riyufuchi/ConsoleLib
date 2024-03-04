@@ -2,7 +2,7 @@
 // Name        : WindowsConsole
 // Author      : Riyufuchi
 // Created on  : 28.02.2024
-// Last Edit   : 28.02.2024
+// Last Edit   : Mar 4, 2024
 //============================================================================
 
 #ifdef _WIN32
@@ -19,11 +19,10 @@ namespace ConsoleUtils
 		}
 		consoleInfo.cbSize = sizeof(CONSOLE_SCREEN_BUFFER_INFOEX);
 		GetConsoleScreenBufferInfoEx(consoleHandle, &consoleInfo);
-		consoleInfo.ColorTable[CURRENT_COLOR_INDEX] = RGB(255, 105, 180);
 		consoleInfo.ColorTable[DEFAULT_COLOR_INDEX] = RGB(204, 204, 204);
 		SetConsoleScreenBufferInfoEx(consoleHandle, &consoleInfo);
 		SetConsoleTextAttribute(consoleHandle, CURRENT_COLOR_INDEX);
-		// Enabling UNICODE symbols
+		// Enabling UNICODE
 		SetConsoleOutputCP(CP_UTF8);
 		SetConsoleCP(CP_UTF8);
 }
@@ -34,7 +33,7 @@ namespace ConsoleUtils
 
 	void WindowsConsole::resetTextColor()
 	{
-		SetConsoleTextAttribute(consoleHandle, CURRENT_COLOR_INDEX);
+		SetConsoleTextAttribute(consoleHandle, DEFAULT_COLOR_INDEX);
 	}
 
 	void WindowsConsole::defaultTextColor()
@@ -45,16 +44,19 @@ namespace ConsoleUtils
 	void WindowsConsole::setDefaultTextColor(Color color)
 	{
 		defaultColor = color;
-		consoleInfo.ColorTable[1] = consoleInfo.ColorTable[DEFAULT_COLOR_INDEX] = RGB((uint8_t)color.red, (uint8_t)color.green, (uint8_t)color.blue);
+		consoleInfo.ColorTable[DEFAULT_COLOR_INDEX] = RGB((uint8_t)color.red, (uint8_t)color.green, (uint8_t)color.blue);
 		SetConsoleScreenBufferInfoEx(consoleHandle, &consoleInfo);
 		SetConsoleTextAttribute(consoleHandle, DEFAULT_COLOR_INDEX);
 	}
 
 	void WindowsConsole::setTextColor(Color color)
 	{
-		consoleInfo.ColorTable[CURRENT_COLOR_INDEX] = RGB(color.red, color.green, color.blue);
+		if (colorIndex >= COLOR_TABLE_LENGHT)
+			colorIndex = COLOR_TABLE_START_INDEX;
+		consoleInfo.ColorTable[colorIndex] = RGB(color.red, color.green, color.blue);
 		SetConsoleScreenBufferInfoEx(consoleHandle, &consoleInfo);
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), CURRENT_COLOR_INDEX);
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colorIndex);
+		colorIndex++;
 	}
 
 	Color WindowsConsole::getDefaultTextColor()
