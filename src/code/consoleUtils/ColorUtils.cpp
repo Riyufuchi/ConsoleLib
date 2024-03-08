@@ -2,7 +2,7 @@
 // Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : 20.11.2021
-// Last Edit   : 14.02.2024
+// Last Edit   : Mar 6, 2024
 //============================================================================
 #include "../../inc/ColorUtils.h"
 
@@ -36,7 +36,7 @@ Color ColorUtils::getColor(ColorPallete color)
 		case CONSOLE_ART_UNIX_DEFAULT: return newColor(5, 195, 221);
 		case APERTURE_ORANGE: return newColor(255, 157, 0);
 		case TERMINAL_FG: return newColor(211, 215, 207);
-		default: return newColor(255, 215, 0);
+		default: return newColor(5, 195, 221);
 	}
 }
 } /* namespace LuaController */

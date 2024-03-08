@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 19.12.2023
+// Last Edit   : Mar 6, 2024
 //============================================================================
 
 #ifndef _CONSOLEUTILITY_H_

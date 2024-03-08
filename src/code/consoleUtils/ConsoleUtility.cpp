@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : 15.02.2024
+// Last Edit   : Mar 6, 2024
 //============================================================================
 
 #include "../../inc/ConsoleUtility.h"
@@ -102,7 +102,6 @@ void ConsoleUtility::listFilesInFolder(std::string workspacePath)
 	}
 	std::cout << "\n";
 }
-
 //args[x] = "arg| action";
 void ConsoleUtility::createManual(std::string* args, int lenght)
 {
@@ -124,7 +123,11 @@ void ConsoleUtility::createManual(std::string* args, int lenght)
 	}
 	std::string line((lineLenght + columnWidth), '-');
 	std::cout << line << "\n";
-	for (int y = 0; y < lenght; y++)
+	std::cout << args[0].substr(0, x = args[0].find("|"));
+	std::cout << std::string(columnWidth - x, ' ');
+	std::cout << " |" << args[0].substr(++x) << "\n";
+	std::cout << line << "\n";
+	for (int y = 1; y < lenght; y++)
 	{
 		std::cout << args[y].substr(0, x = args[y].find("|"));
 		std::cout << std::string(columnWidth - x, ' ');
