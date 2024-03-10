@@ -5,14 +5,16 @@
 // Last Edit   : Mar 6, 2024
 //============================================================================
 
-#include "../../inc/ConsoleUtility.h"
-namespace ConsoleUtils
+#include "../../inc/ConsoleUtils.h"
+namespace ConsoleUtility
 {
-ConsoleUtility::ConsoleUtility()
+ConsoleUtils::ConsoleUtils()
 {
 }
-
-bool ConsoleUtility::yesNo(const char* text)
+ConsoleUtils::~ConsoleUtils()
+{
+}
+bool ConsoleUtils::yesNo(const char* text)
 {
 	std::string choice;
 	std::cout << text;
@@ -21,12 +23,12 @@ bool ConsoleUtility::yesNo(const char* text)
 	return (choice == "y" || choice == "Y" || choice == "");
 }
 
-bool ConsoleUtility::repeat()
+bool ConsoleUtils::repeat()
 {
 	return yesNo("Again? [Y/n] ");
 }
 
-int ConsoleUtility::getIntSafe()
+int ConsoleUtils::getIntSafe()
 {
 	int x = 0;
 	while(true)
@@ -42,7 +44,7 @@ int ConsoleUtility::getIntSafe()
 	return x;
 }
 
-int ConsoleUtility::getIntSafe(int min, int max)
+int ConsoleUtils::getIntSafe(int min, int max)
 {
 	int x = 0;
 	while(true)
@@ -55,7 +57,7 @@ int ConsoleUtility::getIntSafe(int min, int max)
 	}
 }
 
-void ConsoleUtility::header(std::string text)
+void ConsoleUtils::header(std::string text)
 {
 	std::string line = "";
 	int lenght = static_cast<int>(text.size());
@@ -66,7 +68,7 @@ void ConsoleUtility::header(std::string text)
 	std::cout << line << "\n" << text << "\n" << line << std::endl;
 }
 
-void ConsoleUtility::header(std::string text, IConsole& console, Color textColor)
+void ConsoleUtils::header(std::string text, IConsole& console, Color textColor)
 {
 	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
 	console.setTextColor(textColor);
@@ -74,7 +76,7 @@ void ConsoleUtility::header(std::string text, IConsole& console, Color textColor
 	console.resetTextColor();
 }
 
-int ConsoleUtility::basicMenu(int lenght, const char* menu[])
+int ConsoleUtils::basicMenu(int lenght, const char* menu[])
 {
 	for(int i = 0; i < lenght; i++)
 	{
@@ -84,7 +86,7 @@ int ConsoleUtility::basicMenu(int lenght, const char* menu[])
 	return result;
 }
 
-void ConsoleUtility::listFilesInFolder(std::string workspacePath)
+void ConsoleUtils::listFilesInFolder(std::string workspacePath)
 {
 	std::cout << "\n";
 	if (workspacePath == "")
@@ -103,7 +105,7 @@ void ConsoleUtility::listFilesInFolder(std::string workspacePath)
 	std::cout << "\n";
 }
 //args[x] = "arg| action";
-void ConsoleUtility::createManual(std::string* args, int lenght)
+void ConsoleUtils::createManual(std::string* args, int lenght)
 {
 	int lineLenght = 1;
 	int lineLengthTemp = 0;
@@ -134,8 +136,5 @@ void ConsoleUtility::createManual(std::string* args, int lenght)
 		std::cout << " |" << args[y].substr(++x) << "\n";
 	}
 	std::cout << line << "\n";
-}
-ConsoleUtility::~ConsoleUtility()
-{
 }
 } // Namespace

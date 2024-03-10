@@ -6,7 +6,7 @@
 //============================================================================
 #include "../../inc/ColorUtils.h"
 
-namespace ConsoleUtils
+namespace ConsoleUtility
 {
 ColorUtils::ColorUtils()
 {

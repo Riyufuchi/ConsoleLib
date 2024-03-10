@@ -8,7 +8,7 @@
 #ifdef _WIN32
 #include "../../inc/WindowsConsole.h"
 
-namespace ConsoleUtils
+namespace ConsoleUtility
 {
 	WindowsConsole::WindowsConsole() : defaultColor(Color{204, 204, 204})
 	{

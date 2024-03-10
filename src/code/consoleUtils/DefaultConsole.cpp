@@ -7,7 +7,7 @@
 //============================================================================
 
 #include "../../inc/DefaultConsole.h"
-namespace ConsoleUtils
+namespace ConsoleUtility
 {
 DefaultConsole::DefaultConsole()
 {

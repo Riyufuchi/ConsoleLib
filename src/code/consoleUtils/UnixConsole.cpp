@@ -7,7 +7,7 @@
 //============================================================================
 
 #include "../../inc/UnixConsole.h"
-namespace ConsoleUtils
+namespace ConsoleUtility
 {
 UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})
 {

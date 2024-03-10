@@ -12,7 +12,7 @@
 
 #include <string>
 
-namespace ConsoleUtils
+namespace DataUtility
 {
 class DataUtils
 {

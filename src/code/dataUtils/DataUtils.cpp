@@ -7,9 +7,9 @@
 // Description: ConsoleLib
 //==============================================================================
 
-#include "../inc/DataUtils.h"
+#include "../../inc/DataUtils.h"
 
-namespace ConsoleUtils
+namespace DataUtility
 {
 DataUtils::DataUtils()
 {}
