@@ -10,6 +10,8 @@
 #ifndef _SERVER_H_
 #define _SERVER_H_
 
+#if defined(__linux__) || defined(__APPLE__)
+
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -43,4 +45,5 @@ public:
 	std::string getServerStatus();
 };
 }
+#endif
 #endif /* _SERVER_H_ */

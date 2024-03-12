@@ -13,17 +13,29 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-#include <unistd.h>
-#include <arpa/inet.h>
+
+#if defined(__linux__) || defined(__APPLE__)
+	#include <unistd.h>
+	#include <arpa/inet.h>
+#elif defined(_WIN32)
+	#include <winsock2.h>
+	#include <windows.h>
+	#include <Ws2tcpip.h>
+	#pragma comment(lib, "Ws2_32.lib") // Link against Ws2_32.lib library
+#endif
 
 namespace SufuServer
 {
 class Client
 {
 private:
-	sockaddr_in serverAddr;
+#if defined(__linux__) || defined(__APPLE__)
 	ssize_t bytesSent;
 	int clientSocket = 0;
+#elif defined(_WIN32)
+	SOCKET clientSocket = INVALID_SOCKET;
+#endif
+	sockaddr_in serverAddr;
 	char buffer[1024];
 	const char* serverName;
 	std::string status;

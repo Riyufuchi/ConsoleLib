@@ -8,7 +8,7 @@
 //==============================================================================
 
 #include "../../inc/Server.h"
-
+#if defined(__linux__) || defined(__APPLE__)
 namespace SufuServer
 {
 	Server::Server() : Server(12345)
@@ -122,3 +122,4 @@ namespace SufuServer
 		close(clientSocket);
 	}
 }
+#endif

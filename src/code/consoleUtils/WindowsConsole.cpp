@@ -21,7 +21,7 @@ namespace ConsoleUtility
 		GetConsoleScreenBufferInfoEx(consoleHandle, &consoleInfo);
 		consoleInfo.ColorTable[DEFAULT_COLOR_INDEX] = RGB(204, 204, 204);
 		SetConsoleScreenBufferInfoEx(consoleHandle, &consoleInfo);
-		SetConsoleTextAttribute(consoleHandle, CURRENT_COLOR_INDEX);
+		SetConsoleTextAttribute(consoleHandle, DEFAULT_COLOR_INDEX);
 		// Enabling UNICODE
 		SetConsoleOutputCP(CP_UTF8);
 		SetConsoleCP(CP_UTF8);
