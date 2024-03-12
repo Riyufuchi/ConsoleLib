@@ -11,33 +11,44 @@
 
 namespace SufuServer
 {
-	Server::Server()
+	Server::Server() : Server(12345)
+	{}
+	Server::Server(uint16_t port)
 	{
 		this->keepRunnig = true;
+		this->serverStatus = "OK";
+		this->port = port;
 		this->serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 
 		if (serverSocket == -1)
 		{
-			std::cerr << "Error: Failed to create socket\n";
+			this->serverStatus = "Error: Failed to create socket\n";
 			this->keepRunnig = false;
 		}
 		serverAddr.sin_family = AF_INET;
 		serverAddr.sin_addr.s_addr = INADDR_ANY;
-		serverAddr.sin_port = htons(12345); // Port number
+		serverAddr.sin_port = htons(port); // Port number
 
 		if (bind(serverSocket, (sockaddr*) &serverAddr, sizeof(serverAddr)) == -1)
 		{
-			std::cerr << "Error: Bind failed\n";
+			this->serverStatus = "Error: Bind failed\n";
+			close(serverSocket);
+			this->keepRunnig = false;
+		}
+		if (listen(serverSocket, 5) == -1)
+		{
+			this->serverStatus = "Error: Listen failed\n";
 			close(serverSocket);
 			this->keepRunnig = false;
 		}
 
+		/*
 		if (listen(serverSocket, 5) == -1)
 		{
-			std::cerr << "Error: Listen failed\n";
+			this->serverStatus = "Error: Listen failed\n";
 			close(serverSocket);
 			this->keepRunnig = false;
-		}
+		}*/
 
 		this->clientAddrLen = sizeof(clientAddr);
 		this->clientSocket = 0;
@@ -46,6 +57,18 @@ namespace SufuServer
 	{
 		close(serverSocket);
 	}
+	uint16_t Server::getPort()
+	{
+		return port;
+	}
+	std::string Server::getServerStatus()
+	{
+		return serverStatus;
+	}
+	bool Server::isRunning()
+	{
+		return serverStatus == "OK";
+	}
 	void Server::runServer(std::string& message)
 	{
 		while (keepRunnig)
@@ -53,7 +76,7 @@ namespace SufuServer
 			clientSocket = accept(serverSocket, (sockaddr*) &clientAddr,&clientAddrLen);
 			if (clientSocket == -1)
 			{
-				std::cerr << "Error: Accept failed\n";
+				this->serverStatus = "Error: Accept failed\n";
 				continue; // Continue to accept other connections
 			}
 			handleRequest(message);
@@ -69,12 +92,14 @@ namespace SufuServer
 			bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
 			if (bytesRead == -1)
 			{
-				std::cerr << "Error: Receive failed " << strerror(errno) << "\n";
+				serverStatus = "Error: Receive failed ";
+				serverStatus += strerror(errno);
+				serverStatus += "\n";
 				break;
 			}
 			else if (bytesRead == 0)
 			{
-				std::cout << "Client disconnected\n";
+				this->serverStatus = "Client disconnected\n";
 				break;
 			}
 
@@ -83,7 +108,7 @@ namespace SufuServer
 
 			if (strcmp(buffer, "logout") == 0)
 			{
-				std::cout << "Client logged out\n";
+				this->serverStatus = "Client logged out\n";
 				keepRunnig = false;
 				break;
 			}
@@ -93,7 +118,7 @@ namespace SufuServer
 			modifiedMessageLength = modifiedMessage.length();
 			if (send(clientSocket, modifiedMessage.c_str(), modifiedMessageLength, 0) == -1)
 			{
-				std::cerr << "Error: Send failed\n";
+				this->serverStatus = "Error: Send failed\n";
 				break;
 			}
 		}

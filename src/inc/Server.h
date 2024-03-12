@@ -28,11 +28,18 @@ private:
 	int clientSocket = 0;
 	bool keepRunnig;
 	char buffer[1024];
+	std::string serverStatus;
+	uint16_t port;
 	void handleRequest(std::string& message);
 public:
 	Server();
+	Server(uint16_t port);
 	~Server();
 	void runServer(std::string& message);
+	// Functions
+	bool isRunning();
+	uint16_t getPort();
+	std::string getServerStatus();
 };
 }
 #endif /* _SERVER_H_ */
