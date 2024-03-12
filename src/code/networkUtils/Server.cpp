@@ -25,6 +25,14 @@ namespace SufuServer
 			this->serverStatus = "Error: Failed to create socket\n";
 			this->keepRunnig = false;
 		}
+
+		int opt = 1;
+		if (setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) == -1)
+		{
+			this->serverStatus = "Error: setsockopt failed";
+			this->keepRunnig = false;
+		}
+
 		serverAddr.sin_family = AF_INET;
 		serverAddr.sin_addr.s_addr = INADDR_ANY;
 		serverAddr.sin_port = htons(port); // Port number
@@ -41,14 +49,6 @@ namespace SufuServer
 			close(serverSocket);
 			this->keepRunnig = false;
 		}
-
-		/*
-		if (listen(serverSocket, 5) == -1)
-		{
-			this->serverStatus = "Error: Listen failed\n";
-			close(serverSocket);
-			this->keepRunnig = false;
-		}*/
 
 		this->clientAddrLen = sizeof(clientAddr);
 		this->clientSocket = 0;
@@ -85,8 +85,6 @@ namespace SufuServer
 	void Server::handleRequest(std::string& message)
 	{
 		ssize_t bytesRead = 0;
-		std::string modifiedMessage = "ECHO";
-		size_t modifiedMessageLength = modifiedMessage.length();
 		while (true)
 		{
 			bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
@@ -104,7 +102,7 @@ namespace SufuServer
 			}
 
 			buffer[bytesRead] = '\0';
-			std::cout << "Received: " << buffer << std::endl;
+			std::cout << "Received: " << buffer << " \n";
 
 			if (strcmp(buffer, "logout") == 0)
 			{
@@ -114,9 +112,8 @@ namespace SufuServer
 			}
 
 			// Echo back to client
-			modifiedMessage = std::string(buffer).append(" [Echo from server]");
-			modifiedMessageLength = modifiedMessage.length();
-			if (send(clientSocket, modifiedMessage.c_str(), modifiedMessageLength, 0) == -1)
+			message = std::string(buffer).append(" [Echo from server]");
+			if (send(clientSocket, message.c_str(), message.length(), 0) == -1)
 			{
 				this->serverStatus = "Error: Send failed\n";
 				break;
