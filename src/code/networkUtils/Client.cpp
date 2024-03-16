@@ -2,7 +2,7 @@
 // File       : Client.cpp
 // Author     : riyufuchi
 // Created on : Mar 12, 2024
-// Last edit  : Mar 12, 2024
+// Last edit  : Mar 16, 2024
 // Copyright  : Copyright (c) Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -51,51 +51,106 @@ namespace SufuServer
 	}
 	bool Client::sendRequest(std::string& message)
 	{
-		bytesSent = send(clientSocket, message.c_str(), message.length(), 0);
-		if (bytesSent == -1)
+	bytesSent = send(clientSocket, message.c_str(), message.length(), 0);
+	if (bytesSent == -1)
+	{
+		if (errno == EPIPE)
+		{
+			status = "Connection closed by server\n";
+		}
+		else
 		{
 			status = "Error: Send failed\n";
-			close(clientSocket);
-			return false;
 		}
-		return true;
+		return false;
+	}
+	return true;
 	}
 	bool Client::listenForResponse(std::string& response)
 	{
-		ssize_t bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
+		ssize_t bytesRead = recv(this->clientSocket, this->buffer, sizeof(this->buffer), 0);
 		if (bytesRead == -1)
 		{
-			response = "Error: Receive failed\n";
-			close(clientSocket);
+			status = response = "Error: Receive failed - " + std::string(strerror(errno)) + "\n";
 			return false;
 		}
-		else if (bytesRead == 0)
+		else if (bytesRead == 0) // Server closed connection
 		{
-			response = "Server closed connection\n";
-			close(clientSocket);
+			status = response = "Server closed connection\n";
 			return false;
 		}
-		buffer[bytesRead] = '\0';
-		response = std::string(buffer);
-		return true;
+		else // Data received
+		{
+			this->buffer[bytesRead] = '\0';
+			response = std::string(this->buffer);
+			return true;
+		}
+	}
+	bool Client::listenForResponse(std::string& response, int timeout_ms)
+	{
+		fd_set readfds;
+		FD_ZERO(&readfds);
+		FD_SET(this->clientSocket, &readfds);
+
+		// Initialize timeval struct for timeout
+		struct timeval tv;
+		tv.tv_sec = timeout_ms / 1000;
+		tv.tv_usec = (timeout_ms % 1000) * 1000;
+
+		// Use select to wait for data on socket
+		int result = select(this->clientSocket + 1, &readfds, NULL, NULL, &tv);
+		if (result == -1)
+		{
+			status = response = "Error: Select failed - " + std::string(strerror(errno)) + "\n";
+			return false;
+		}
+		else if (result == 0) // Timeout occurred
+		{
+			status = response = "Error: Receive timed out\n";
+			return false;
+		}
+		else // Data is available on socket
+		{
+			ssize_t bytesRead = recv(this->clientSocket, this->buffer, sizeof(this->buffer), 0);
+			if (bytesRead == -1)
+			{
+				status = response = "Error: Receive failed - " + std::string(strerror(errno)) + "\n";
+				return false;
+			}
+			else if (bytesRead == 0) // Server closed connection
+			{
+
+				status = response = "Server closed connection\n";
+				return false;
+			}
+			else // Data received
+			{
+				this->buffer[bytesRead] = '\0';
+				response = std::string(this->buffer);
+				return true;
+			}
+		}
 	}
 #elif defined(_WIN32)
 
 	Client::Client() : Client("127.0.0.1", 6969) {}
 
-	Client::Client(const char* serverName, uint16_t port) {
+	Client::Client(const char* serverName, uint16_t port)
+	{
 		this->serverName = serverName;
 		this->status = "OK";
 
 		// Initialize Winsock
 		WSADATA wsaData;
-		if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+		if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
+		{
 			this->status = "Error: WSAStartup failed\n";
 			return;
 		}
 
 		this->clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-		if (this->clientSocket == INVALID_SOCKET) {
+		if (this->clientSocket == INVALID_SOCKET)
+		{
 			this->status = "Error: Failed to create socket\n";
 			WSACleanup();
 			return;
@@ -112,7 +167,8 @@ namespace SufuServer
 		}
 
 		serverAddr.sin_family = AF_INET;
-		if (InetPton(AF_INET, wideServerName, &serverAddr.sin_addr) != 1) {
+		if (InetPton(AF_INET, wideServerName, &serverAddr.sin_addr) != 1)
+		{
 			this->status = "Error: Invalid address\n";
 			closesocket(this->clientSocket);
 			WSACleanup();
@@ -120,7 +176,8 @@ namespace SufuServer
 		}
 		serverAddr.sin_port = htons(port); // Server port
 
-		if (connect(this->clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
+		if (connect(this->clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+		{
 			this->status = "Error: Connection failed\n";
 			closesocket(this->clientSocket);
 			WSACleanup();
@@ -128,22 +185,27 @@ namespace SufuServer
 		}
 	}
 
-	Client::~Client() {
+	Client::~Client()
+	{
 		closesocket(this->clientSocket);
 		WSACleanup();
 	}
 
-	std::string Client::getClientStatus() {
+	std::string Client::getClientStatus()
+	{
 		return this->status;
 	}
 
-	bool Client::isConnected() {
+	bool Client::isConnected()
+	{
 		return this->status == "OK";
 	}
 
-	bool Client::sendRequest(std::string& message) {
+	bool Client::sendRequest(std::string& message)
+	{
 		int bytesSent = send(this->clientSocket, message.c_str(), message.length(), 0);
-		if (bytesSent == SOCKET_ERROR) {
+		if (bytesSent == SOCKET_ERROR)
+		{
 			this->status = "Error: Send failed\n";
 			closesocket(this->clientSocket);
 			WSACleanup();
@@ -152,15 +214,18 @@ namespace SufuServer
 		return true;
 	}
 
-	bool Client::listenForResponse(std::string& response) {
+	bool Client::listenForResponse(std::string& response)
+	{
 		int bytesRead = recv(this->clientSocket, this->buffer, sizeof(this->buffer), 0);
-		if (bytesRead == SOCKET_ERROR) {
+		if (bytesRead == SOCKET_ERROR)
+		{
 			response = "Error: Receive failed\n";
 			closesocket(this->clientSocket);
 			WSACleanup();
 			return false;
 		}
-		else if (bytesRead == 0) {
+		else if (bytesRead == 0)
+		{
 			response = "Server closed connection\n";
 			closesocket(this->clientSocket);
 			WSACleanup();

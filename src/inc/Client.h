@@ -2,7 +2,7 @@
 // File       : Server.h
 // Author     : riyufuchi
 // Created on : Mar 11, 2024
-// Last edit  : Mar 11, 2024
+// Last edit  : Mar 16, 2024
 // Copyright  : Copyright (c) Riyufuchi
 // Description: Simple client
 //==============================================================================
@@ -47,6 +47,7 @@ public:
 	bool isConnected();
 	bool sendRequest(std::string& message);
 	bool listenForResponse(std::string& message);
+	bool listenForResponse(std::string& message, int timeout_ms);
 };
 }
 #endif /* _SERVER_H_ */

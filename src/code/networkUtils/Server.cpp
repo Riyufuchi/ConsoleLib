@@ -2,7 +2,7 @@
 // File       : Server.cpp
 // Author     : riyufuchi
 // Created on : Mar 12, 2024
-// Last edit  : Mar 12, 2024
+// Last edit  : Mar 16, 2024
 // Copyright  : Copyright (c) Riyufuchi
 // Description: Simple server
 //==============================================================================
@@ -15,7 +15,7 @@ namespace SufuServer
 	{}
 	Server::Server(uint16_t port)
 	{
-		this->keepRunnig = true;
+		this->keepRunning = true;
 		this->serverStatus = "OK";
 		this->port = port;
 		this->serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -23,14 +23,14 @@ namespace SufuServer
 		if (serverSocket == -1)
 		{
 			this->serverStatus = "Error: Failed to create socket\n";
-			this->keepRunnig = false;
+			this->keepRunning = false;
 		}
 
 		int opt = 1;
 		if (setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) == -1)
 		{
 			this->serverStatus = "Error: setsockopt failed";
-			this->keepRunnig = false;
+			this->keepRunning = false;
 		}
 
 		serverAddr.sin_family = AF_INET;
@@ -41,17 +41,16 @@ namespace SufuServer
 		{
 			this->serverStatus = "Error: Bind failed\n";
 			close(serverSocket);
-			this->keepRunnig = false;
+			this->keepRunning = false;
 		}
-		if (listen(serverSocket, 5) == -1)
+		if (listen(serverSocket, SOMAXCONN) == -1)
 		{
 			this->serverStatus = "Error: Listen failed\n";
 			close(serverSocket);
-			this->keepRunnig = false;
+			this->keepRunning = false;
 		}
 
 		this->clientAddrLen = sizeof(clientAddr);
-		this->clientSocket = 0;
 	}
 	Server::~Server()
 	{
@@ -69,22 +68,70 @@ namespace SufuServer
 	{
 		return serverStatus == "OK";
 	}
-	void Server::runServer(std::string& message)
+	void Server::shutdownServer()
 	{
-		while (keepRunnig)
+		keepRunning = false;
+	}
+	void Server::runServer()
+	{
+		//int clientSocket = 0;
+		while (keepRunning)
 		{
-			clientSocket = accept(serverSocket, (sockaddr*) &clientAddr,&clientAddrLen);
+			// Accept new connection
+			//sockaddr_in clientAddr;
+			clientAddrLen = sizeof(clientAddr);
+			int clientSocket = accept(serverSocket, (sockaddr*)&clientAddr, &clientAddrLen);
 			if (clientSocket == -1)
 			{
-				this->serverStatus = "Error: Accept failed\n";
-				continue; // Continue to accept other connections
+				std::cerr << "Error: Accept failed" << std::endl;
+				continue;
 			}
-			handleRequest(message);
+			// Handle communication with the client in a new thread
+			if (clientThreads.size() >= MAX_CONNECTED_USERS)
+			{
+				sendResponse(clientSocket, std::string("Server is full!"));
+				close(clientSocket);
+				continue;
+			}
+			std::lock_guard<std::mutex> lock(clientThreadsMutex);
+			clientThreads.emplace_back(&Server::handleUser, this, clientSocket);
+			clientThreads.back().detach(); // Detach the thread so it runs independently
 		}
 	}
-	void Server::handleRequest(std::string& message)
+	bool Server::sendResponse(int clientSocket, std::string message)
 	{
+		if (send(clientSocket, message.c_str(), message.length(), 0) == -1)
+		{
+			this->serverStatus = "Error: Send failed\n";
+			return false;
+		}
+		return true;
+	}
+	void Server::handleUser(int clientSocket)
+	{
+		char buffer[1024];
 		ssize_t bytesRead = 0;
+
+		bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
+		if (bytesRead == -1)
+		{
+			serverStatus = "Error: Receive failed ";
+			serverStatus += strerror(errno);
+			serverStatus += "\n";
+			return;
+		}
+		else if (bytesRead == 0)
+		{
+			this->serverStatus = "Client disconnected\n";
+			return;
+		}
+		buffer[bytesRead] = '\0';
+		std::string username = std::string(buffer);
+		sendResponse(clientSocket, std::string("Welcome ").append(username).append(" to ConsoleArt server"));
+		std::cout << "User " << username << " has joined" << " \n";
+
+		User thisUser{username, clientSocket, true};
+
 		while (true)
 		{
 			bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
@@ -93,33 +140,38 @@ namespace SufuServer
 				serverStatus = "Error: Receive failed ";
 				serverStatus += strerror(errno);
 				serverStatus += "\n";
+				std::cout << serverStatus;
 				break;
 			}
 			else if (bytesRead == 0)
 			{
-				this->serverStatus = "Client disconnected\n";
+				std::cout << "User " + username + " disconnected\n";
+				thisUser.connected = false;
 				break;
 			}
 
 			buffer[bytesRead] = '\0';
-			std::cout << "Received: " << buffer << " \n";
 
 			if (strcmp(buffer, "logout") == 0)
 			{
-				this->serverStatus = "Client logged out\n";
-				keepRunnig = false;
+				std::cout <<  "User " + username + " logged out\n";
+				thisUser.connected = false;
 				break;
 			}
-
+			//std::cout <<  username << ": " << buffer << " \n";
 			// Echo back to client
-			message = std::string(buffer).append(" [Echo from server]");
-			if (send(clientSocket, message.c_str(), message.length(), 0) == -1)
-			{
-				this->serverStatus = "Error: Send failed\n";
-				break;
-			}
+			sendResponse(clientSocket, std::string(buffer).append(" [Echo from server]"));
 		}
+
 		close(clientSocket);
+		// Remove the disconnected client's thread from clientThreads vector
+		std::lock_guard<std::mutex> lock(clientThreadsMutex); // Lock the vector before modifying it
+		clientThreads.erase(std::remove_if(clientThreads.begin(), clientThreads.end(), [&](std::thread& t)
+		{
+			return (t.get_id() == std::this_thread::get_id());
+		}), clientThreads.end());
+		if (clientThreads.size() == 0)
+			std::cout << "Server is empty\n";
 	}
 }
 #endif
