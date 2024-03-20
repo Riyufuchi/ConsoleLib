@@ -1,30 +1,21 @@
 //==============================================================================
 // File       : Client.cpp
-// Author     : riyufuchi
+// Author     : Riyufuchi
 // Created on : Mar 12, 2024
 // Last edit  : Mar 20, 2024
 // Copyright  : Copyright (c) Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
+#if defined(_WIN32)
 
-#include "../../inc/Client.h"
+#include "../../inc/WindowsClient.h"
 
 namespace SufuServer
 {
-	std::string Client::getClientStatus() const
-	{
-		return status;
-	}
-	bool Client::isConnected() const
-	{
-		return status == "OK";
-	}
+	WindowsClient::WindowsClient() : WindowsClient("127.0.0.1", 6969)
+	{}
 
-#if defined(_WIN32)
-
-	Client::Client() : Client("127.0.0.1", 6969) {}
-
-	Client::Client(const char* serverName, uint16_t port)
+	WindowsClient::WindowsClient(const char* serverName, uint16_t port)
 	{
 		this->serverName = serverName;
 		this->status = "OK";
@@ -74,23 +65,13 @@ namespace SufuServer
 		}
 	}
 
-	Client::~Client()
+	WindowsClient::~WindowsClient()
 	{
 		closesocket(this->clientSocket);
 		WSACleanup();
 	}
 
-	std::string Client::getClientStatus()
-	{
-		return this->status;
-	}
-
-	bool Client::isConnected()
-	{
-		return this->status == "OK";
-	}
-
-	bool Client::sendRequest(std::string& message)
+	bool WindowsClient::sendRequest(std::string& message)
 	{
 		int bytesSent = send(this->clientSocket, message.c_str(), message.length(), 0);
 		if (bytesSent == SOCKET_ERROR)
@@ -103,7 +84,7 @@ namespace SufuServer
 		return true;
 	}
 
-	bool Client::listenForResponse(std::string& response)
+	bool WindowsClient::listenForResponse(std::string& response)
 	{
 		int bytesRead = recv(this->clientSocket, this->buffer, sizeof(this->buffer), 0);
 		if (bytesRead == SOCKET_ERROR)
@@ -124,5 +105,5 @@ namespace SufuServer
 		response = std::string(this->buffer);
 		return true;
 	}
-#endif
 }
+#endif
