@@ -1,6 +1,6 @@
 //==============================================================================
-// File       : Server.h
-// Author     : riyufuchi
+// File       : WindowsClient.h
+// Author     : Riyufuchi
 // Created on : Mar 11, 2024
 // Last edit  : Mar 16, 2024
 // Copyright  : Copyright (c) Riyufuchi
