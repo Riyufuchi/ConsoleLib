@@ -12,7 +12,7 @@
 
 namespace SufuServer
 {
-	WindowsClient::WindowsClient() : WindowsClient("127.0.0.1", 6969)
+	WindowsClient::WindowsClient() : WindowsClient("127.0.0.1", 6969) : Client()
 	{}
 
 	WindowsClient::WindowsClient(const char* serverName, uint16_t port)

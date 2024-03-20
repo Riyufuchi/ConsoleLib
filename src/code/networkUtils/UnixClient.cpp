@@ -13,7 +13,7 @@ namespace SufuServer
 {
 	UnixClient::UnixClient() : UnixClient("127.0.0.1", 6969)
 	{}
-	UnixClient::UnixClient(const char* serverName, uint16_t port)
+	UnixClient::UnixClient(const char* serverName, uint16_t port) : Client()
 	{
 		this->serverName = serverName;
 		this->status = "OK";

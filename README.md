@@ -11,7 +11,11 @@ Library for easier working with console/terminal. I made this out of boredom so 
 
 ## Compilation
 
-- Simple C++ code, no need for further instructions about compiling.
+   ```bash
+   git clone https://github.com/Riyufuchi/ConsoleLib.git
+   cd ConsoleLib
+   make
+   ```
 
 ## Project guide
 

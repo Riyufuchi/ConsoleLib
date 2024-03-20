@@ -1,6 +1,6 @@
 //==============================================================================
-// File       : Server.h
-// Author     : riyufuchi
+// File       : Client.h
+// Author     : Riyufuchi
 // Created on : Mar 11, 2024
 // Last edit  : Mar 20, 2024
 // Copyright  : Copyright (c) Riyufuchi
@@ -21,8 +21,8 @@ class Client
 protected:
 	std::string status;
 public:
-	Client();
-	virtual ~Client();
+	Client() = default;
+	virtual ~Client() = default;
 	virtual std::string getClientStatus() const final;
 	virtual bool isConnected() const final;
 	virtual bool sendRequest(std::string& message) = 0;
