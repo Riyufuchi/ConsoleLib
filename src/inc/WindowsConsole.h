@@ -2,7 +2,7 @@
 // Name        : WindowsConsole
 // Author      : Riyufuchi
 // Created on  : 28.02.2024
-// Last Edit   : Mar 4, 2024
+// Last Edit   : Mar 27, 2024
 //============================================================================
 
 #ifdef _WIN32
@@ -15,7 +15,7 @@
 
 #include "IConsole.hpp"
 
-namespace ConsoleUtility
+namespace ConsoleLib
 {
 	class WindowsConsole : public IConsole
 	{

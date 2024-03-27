@@ -2,12 +2,12 @@
 // File       : Server.cpp
 // Author     : riyufuchi
 // Created on : Mar 12, 2024
-// Last edit  : Mar 16, 2024
+// Last edit  : Mar 27, 2024
 // Copyright  : Copyright (c) Riyufuchi
 // Description: Simple server
 //==============================================================================
 
-#include "../../inc/Server.h"
+#include "../inc/Server.h"
 #if defined(__linux__) || defined(__APPLE__)
 namespace SufuServer
 {

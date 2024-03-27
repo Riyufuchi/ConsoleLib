@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : 20.07.2020
-// Last Edit   : Mat 10, 2024
+// Last Edit   : Mar 27, 2024
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -14,7 +14,7 @@
 
 #include "IConsole.hpp"
 
-namespace ConsoleUtility
+namespace ConsoleLib
 {
 class UnixConsole : public IConsole
 {

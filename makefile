@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -pedantic #-std=c++11
 
 # Directories
-SRC_DIR = src/code
+SRC_DIR = src
 INC_DIR = src/inc
 BUILD_DIR = build
 LIB_DIR = lib

@@ -1,13 +1,32 @@
 # ConsoleLib
 
 - [About](#about)
-- [Compilation](#compilation)
 - [Project guide](#project-guide)
+- [Namespaces](#namespaces)
+- [Compilation](#compilation)
 - [Donate](#donate)
 
 ## About
 
 Library for easier working with console/terminal. I made this out of boredom so implementation might not be ideal as this used to be only in one project, but my other C++ project might benefit from this, hence that is why I made this library as a collection of my utility classes.
+
+## Project guide
+
+- .hpp is used when there is no coresponding .cpp file
+
+## Namespaces
+
+### ConsoleLib
+
+This namespace contains mainly original classes, that were inteded to be in this library.
+
+### DataUtils
+
+Contains utils to work with data.
+
+### SufuServer
+
+Contains basic and "experimatal" networking utils
 
 ## Compilation
 
@@ -16,10 +35,6 @@ Library for easier working with console/terminal. I made this out of boredom so 
    cd ConsoleLib
    make
    ```
-
-## Project guide
-
-- .hpp is used when there is no coresponding .cpp file
 
 ## Donate
 

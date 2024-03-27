@@ -2,11 +2,11 @@
 // Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : 20.11.2021
-// Last Edit   : Mar 6, 2024
+// Last Edit   : Mar 27, 2024
 //============================================================================
-#include "../../inc/ColorUtils.h"
+#include "../inc/ColorUtils.h"
 
-namespace ConsoleUtility
+namespace ConsoleLib
 {
 ColorUtils::ColorUtils()
 {
@@ -14,6 +14,10 @@ ColorUtils::ColorUtils()
 ColorUtils::~ColorUtils()
 {
 }
+/**
+ * This function was created because of oversight in Color struct declaration.
+ * It is here for LEGACY reasons
+ */
 Color ColorUtils::newColor(short int r, short int g, short int b)
 {
 	return Color{r, g, b};
@@ -22,7 +26,7 @@ Color ColorUtils::getColor(ColorPallete color)
 {
 	switch (color)
 	{
-		case HAUNTED: return newColor(56, 243, 171);
+		case HAUNTED: return Color{56, 243, 171};
 		case UNIQUE :return newColor(255, 215, 0);
 		case STRANGE: return newColor(207, 106, 50);;
 		case UNUSUAL: return newColor(134, 80, 172);
@@ -39,4 +43,4 @@ Color ColorUtils::getColor(ColorPallete color)
 		default: return newColor(5, 195, 221);
 	}
 }
-} /* namespace LuaController */
+} /* namespace ConsoleLib */

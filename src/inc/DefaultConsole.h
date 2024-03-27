@@ -2,7 +2,7 @@
 // File       : DefaultConsole.h
 // Author     : Riyufuchi
 // Created on : Feb 19, 2024
-// Last edit  : Feb 19, 2024
+// Last edit  : Mar 27, 2024
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -15,7 +15,7 @@
 
 #include "IConsole.hpp"
 
-namespace ConsoleUtility
+namespace ConsoleLib
 {
 class DefaultConsole : public IConsole
 {

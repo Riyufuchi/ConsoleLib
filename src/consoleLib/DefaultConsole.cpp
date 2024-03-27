@@ -2,12 +2,12 @@
 // Name        : DefaultConsole
 // Author      : Riyufuchi
 // Created on  : Feb 19, 2024
-// Last Edit   : Feb 20, 2024
+// Last Edit   : Mar 27, 2024
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
-#include "../../inc/DefaultConsole.h"
-namespace ConsoleUtility
+#include "../inc/DefaultConsole.h"
+namespace ConsoleLib
 {
 DefaultConsole::DefaultConsole()
 {

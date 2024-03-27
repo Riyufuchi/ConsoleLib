@@ -2,13 +2,13 @@
 // Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : 20.11.2021
-// Last Edit   : 14.02.2024
+// Last Edit   : Mar 27, 2024
 //============================================================================
 
 #ifndef SRC_INC_COLOR_UTILS_H_
 #define SRC_INC_COLOR_UTILS_H_
 
-namespace ConsoleUtility
+namespace ConsoleLib
 {
 struct Color // This way, there is no need to cast, because uint8_t would be treated as char not numerical value
 {
