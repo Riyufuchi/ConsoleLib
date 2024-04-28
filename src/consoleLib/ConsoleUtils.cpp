@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : Mar 27, 2024
+// Last Edit   : Apr 28, 2024
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -83,6 +83,17 @@ int ConsoleUtils::basicMenu(int lenght, const char* menu[])
 		printf("%d. %s \n", i + 1, menu[i]);
 	}
 	int result = getIntSafe(1, lenght) - 1;
+	return result;
+}
+
+int ConsoleUtils::basicMenu(std::vector<const char*> menu)
+{
+	const int LENGHT = menu.size();
+	for(int i = 0; i < LENGHT; i++)
+	{
+		printf("%d. %s \n", i + 1, menu[i]);
+	}
+	int result = getIntSafe(1, LENGHT) - 1;
 	return result;
 }
 
