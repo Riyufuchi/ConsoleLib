@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : Apr 28, 2024
+// Last Edit   : Jan 14, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -147,5 +147,47 @@ void ConsoleUtils::createManual(std::string* args, int lenght)
 		std::cout << " |" << args[y].substr(++x) << "\n";
 	}
 	std::cout << line << "\n";
+}
+std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(int argc, char** argv, bool& success, std::string& message)
+{
+	std::map<std::string, std::vector<std::string>> arguments;
+	success = true;
+	message.clear();
+
+	if (argc < 2)
+	{
+		success = true;
+		message = "No arguments provided.";
+		return arguments;
+	}
+
+	std::string currentArg = argv[1];
+	if (!(currentArg.starts_with("--") || currentArg.starts_with("-"))) // Check if first argument is't just an argument
+	{
+		success = false;
+		message = "Value without option: " + currentArg;
+		return arguments;
+	}
+
+	for (int i = 1; i < argc; ++i)
+	{
+		currentArg = argv[i];
+		if (currentArg.starts_with("--") || currentArg.starts_with("-"))
+		{
+			if (arguments.find(currentArg) != arguments.end()) // Check for duplicate options
+			{
+				success = false;
+				message = "Duplicate option detected: " + currentArg;
+				return arguments;
+			}
+			arguments[currentArg] = std::vector<std::string> {}; // Add a new option with an empty vector for its values
+		}
+		else
+		{
+			arguments.rbegin()->second.push_back(currentArg); // Add value to the most recent option
+		}
+	}
+	message = "Argument analyzation was success.";
+	return arguments;
 }
 } // Namespace
