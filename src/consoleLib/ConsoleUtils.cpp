@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : Jan 14, 2025
+// Last Edit   : Jan 25, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -148,6 +148,22 @@ void ConsoleUtils::createManual(std::string* args, int lenght)
 	}
 	std::cout << line << "\n";
 }
+void ConsoleUtils::printArgumentPairs(const std::map<std::string, std::vector<std::string>>& argPairs)
+{
+	for (const auto& [key, values] : argPairs)
+	{
+		std::cout << key << ": [";
+		for (size_t i = 0; i < values.size(); ++i)
+		{
+			std::cout << values[i];
+			if (i < values.size() - 1)
+			{
+				std::cout << ", ";
+			}
+		}
+		std::cout << "]\n";
+	}
+}
 std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(int argc, char** argv, bool& success, std::string& message)
 {
 	std::map<std::string, std::vector<std::string>> arguments;
@@ -169,6 +185,8 @@ std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(i
 		return arguments;
 	}
 
+	std::string currentArgV;
+
 	for (int i = 1; i < argc; ++i)
 	{
 		currentArg = argv[i];
@@ -184,10 +202,10 @@ std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(i
 		}
 		else
 		{
-			arguments.rbegin()->second.push_back(currentArg); // Add value to the most recent option
+			arguments.begin()->second.push_back(currentArg); // Add value to the most recent option
 		}
 	}
-	message = "Argument analyzation was success.";
+	message = "Argument parsing was successful.";
 	return arguments;
 }
 } // Namespace

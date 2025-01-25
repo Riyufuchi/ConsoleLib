@@ -2,14 +2,14 @@
 // File       : DataUtils.cpp
 // Author     : riyufuchi
 // Created on : Mar 8, 2024
-// Last edit  : Mar 27, 2024
+// Last edit  : Jan 25, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
 
 #include "../inc/DataUtils.h"
 
-namespace DataUtility
+namespace ConsoleLib
 {
 DataUtils::DataUtils()
 {}

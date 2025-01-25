@@ -2,7 +2,7 @@
 // File       : TimeUtils.h
 // Author     : Riyufuchi
 // Created on : Mar 26, 2024
-// Last edit  : Mar 26, 2024
+// Last edit  : Jan 25, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleArt
 //==============================================================================
@@ -13,7 +13,7 @@
 #include <chrono>
 #include <ctime>
 
-namespace DataUtility
+namespace ConsoleLib
 {
 struct TimeStamp
 {

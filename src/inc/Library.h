@@ -2,7 +2,7 @@
 // File       : Library.h
 // Author     : Riyufuchi
 // Created on : Mar 27, 2024
-// Last edit  : Jan 14, 2025
+// Last edit  : Jan 25, 2025
 // Copyright  : Copyright (c) Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#define _VERSION "4.1"
+#define _VERSION "4.2"
 
 namespace ConsoleLib
 {

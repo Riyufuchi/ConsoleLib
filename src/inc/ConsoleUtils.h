@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : Jan 14, 2025
+// Last Edit   : Jan 25, 2025
 //============================================================================
 
 #ifndef _CONSOLE_UTILITY_H_
@@ -52,7 +52,7 @@ public:
 	static int basicMenu(std::vector<const char*> menu);
 	static void createManual(std::string* args, int lenght);
 	static void listFilesInFolder(std::string workspacePath);
-	static std::vector<std::pair<std::string,  std::vector<std::string>>> analyzeArguments(int argC, char** args);
+	static void printArgumentPairs(const std::map<std::string, std::vector<std::string>>& argPairs);
 	static std::map<std::string, std::vector<std::string>> analyzeArguments(int argc, char** argv, bool& success, std::string& message);
 };
 }

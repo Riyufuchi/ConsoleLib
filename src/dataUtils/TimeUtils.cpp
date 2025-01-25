@@ -2,14 +2,14 @@
 // File       : TimeUtils.cpp
 // Author     : Riyufuchi
 // Created on : Mar 26, 2024
-// Last edit  : Mar 27, 2024
+// Last edit  : Jan 25, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: ConsoleArt
 //==============================================================================
 
 #include "../inc/TimeUtils.h"
 
-namespace DataUtility
+namespace ConsoleLib
 {
 TimeUtils::TimeUtils()
 {
