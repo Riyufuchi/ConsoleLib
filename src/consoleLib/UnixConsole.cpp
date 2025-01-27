@@ -64,7 +64,6 @@ void UnixConsole::err(Color color, std::string text)
 void UnixConsole::err(short int r, short int g, short int b, std::string text)
 {
 	std::cerr << "\e[38;2;" << r << ";" << g << ";" << b << "m" << text << "\e[m";
-
 }
 UnixConsole::~UnixConsole()
 {

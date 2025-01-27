@@ -1,8 +1,8 @@
 //============================================================================
 // Name        : ColorUtils
 // Author      : Riyufuchi
-// Created on  : 20.11.2021
-// Last Edit   : Mar 27, 2024
+// Created on  : Nov 20, 2021
+// Last Edit   : Jan 27, 2025
 //============================================================================
 
 #ifndef SRC_INC_COLOR_UTILS_H_
@@ -37,7 +37,6 @@ enum ColorPallete
 class ColorUtils
 {
 public:
-	//Color tColor;
 	static constexpr const char* colorPaletteNames[] =
 	{
 		"HAUNTED",
@@ -58,6 +57,7 @@ public:
 	ColorUtils();
 	virtual ~ColorUtils();
 	static Color getColor(ColorPallete color);
+	[[deprecated("For backwards compatibility only")]]
 	static Color newColor(short int r, short int g, short int b);
 };
 }

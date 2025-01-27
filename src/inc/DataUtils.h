@@ -2,7 +2,7 @@
 // File       : DataUtils.h
 // Author     : riyufuchi
 // Created on : Mar 8, 2024
-// Last edit  : Jan 25, 2025
+// Last edit  : Jan 27, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -21,7 +21,7 @@ public:
 	DataUtils();
 	~DataUtils();
 	static bool isNumber(const std::string& s);
-	//static std::string boolToYesOrNo(bool value);
+	static std::string boolToString(bool value);
 };
 }
 #endif
