@@ -2,7 +2,7 @@
 // Name        : DefaultConsole
 // Author      : Riyufuchi
 // Created on  : Feb 19, 2024
-// Last Edit   : Mar 27, 2024
+// Last Edit   : Jan 28, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -20,13 +20,12 @@ void DefaultConsole::defaultTextColor()
 {
 	//std::cout << "Default console have already output in default color\n";
 }
-void DefaultConsole::setTextColor(Color color)
+void DefaultConsole::setTextColor([[maybe_unused]] Color color)
 {
 	//std::cout << "Color [" << color.red << ";" << color.green << ";" << color.blue << "] can't be set by default console\n";
 }
-void DefaultConsole::setDefaultTextColor(Color color)
+void DefaultConsole::setDefaultTextColor([[maybe_unused]] Color color)
 {
-	//setTextColor(color);
 }
 void DefaultConsole::out(const char* text)
 {
@@ -36,11 +35,11 @@ void DefaultConsole::out(std::string text)
 {
 	std::cout << text;
 }
-void DefaultConsole::out(Color color, std::string text)
+void DefaultConsole::out([[maybe_unused]] Color color, std::string text)
 {
 	std::cout << text;
 }
-void DefaultConsole::out(short int r, short int g, short int b, std::string text)
+void DefaultConsole::out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text)
 {
 	std::cout << text;
 
@@ -49,11 +48,11 @@ void DefaultConsole::err(std::string text)
 {
 	std::cerr << text;
 }
-void DefaultConsole::err(Color color, std::string text)
+void DefaultConsole::err([[maybe_unused]] Color color, std::string text)
 {
 	std::cerr << text;
 }
-void DefaultConsole::err(short int r, short int g, short int b, std::string text)
+void DefaultConsole::err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text)
 {
 	std::cerr << text;
 

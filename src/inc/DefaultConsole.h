@@ -2,7 +2,7 @@
 // File       : DefaultConsole.h
 // Author     : Riyufuchi
 // Created on : Feb 19, 2024
-// Last edit  : Mar 27, 2024
+// Last edit  : Jan 28, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -22,20 +22,20 @@ class DefaultConsole : public IConsole
 private:
 public:
 	DefaultConsole();
+	~DefaultConsole();
 	void resetTextColor() override;
 	void defaultTextColor() override;
 	// Setters
-	void setDefaultTextColor(Color color) override;
-	void setTextColor(Color color) override;
+	void setDefaultTextColor([[maybe_unused]] Color color) override;
+	void setTextColor([[maybe_unused]] Color color) override;
 	// Write methods
 	void out(const char* text) override;
 	void out(std::string text) override;
-	void out(Color color, std::string text) override;
-	void out(short int r, short int g, short int b, std::string text) override;
+	void out([[maybe_unused]] Color color, std::string text) override;
+	void out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;
 	void err(std::string text) override;
-	void err(Color color, std::string text) override;
-	void err(short int r, short int g, short int b, std::string text) override;
-	~DefaultConsole();
+	void err([[maybe_unused]] Color color, std::string text) override;
+	void err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;
 };
 }
 #endif /* SRC_INC_DEFAULTCONSOLE_H_ */

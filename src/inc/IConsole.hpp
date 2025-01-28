@@ -1,8 +1,8 @@
 //============================================================================
 // Name        : IConsole
 // Author      : Riyufuchi
-// Created on  : 13.10.2023
-// Last Edit   : Mar 27, 2024
+// Created on  : Oct 13, 2023
+// Last Edit   : Jan 28, 2025
 // Description : This a base class Classes working with console
 //============================================================================
 
@@ -28,7 +28,7 @@ public:
 	// Setters
 	virtual void setTextColor(Color color) = 0;
 	virtual void setDefaultTextColor(Color color) = 0;
-	// Write methods
+	// Output methods
 	virtual void out(const char* text) = 0;
 	virtual void out(std::string text) = 0;
 	virtual void out(Color color, std::string text) = 0;
@@ -37,9 +37,7 @@ public:
 	virtual void err(Color color, std::string text) = 0;
 	virtual void err(short int r, short int g, short int b, std::string text) = 0;
 	// Virtual destructor in the base class
-	virtual ~IConsole()
-	{
-	}
+	virtual ~IConsole() = default;
 };
 }
 #endif /* CONSOLEUTILS_ICONSOLE_HPP_ */
