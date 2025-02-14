@@ -2,7 +2,7 @@
 // Name        : WindowsConsole
 // Author      : Riyufuchi
 // Created on  : 28.02.2024
-// Last Edit   : Mar 27, 2024
+// Last Edit   : Feb 5, 2025
 //============================================================================
 
 #ifdef _WIN32
@@ -62,11 +62,6 @@ namespace ConsoleUtility
 	Color WindowsConsole::getDefaultTextColor()
 	{
 		return defaultColor;
-	}
-
-	void WindowsConsole::out(const char* text)
-	{
-		std::cout << text;
 	}
 
 	void WindowsConsole::out(std::string text)

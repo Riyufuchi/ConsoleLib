@@ -2,7 +2,7 @@
 // File       : DefaultConsole.h
 // Author     : Riyufuchi
 // Created on : Feb 19, 2024
-// Last edit  : Jan 28, 2025
+// Last edit  : Feb 5, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -23,13 +23,12 @@ private:
 public:
 	DefaultConsole();
 	~DefaultConsole();
-	void resetTextColor() override;
-	void defaultTextColor() override;
+	void disableCustomFG() override;
+	void enableCustomFG() override;
 	// Setters
 	void setDefaultTextColor([[maybe_unused]] Color color) override;
-	void setTextColor([[maybe_unused]] Color color) override;
+	void enableCustomFG([[maybe_unused]] Color color) override;
 	// Write methods
-	void out(const char* text) override;
 	void out(std::string text) override;
 	void out([[maybe_unused]] Color color, std::string text) override;
 	void out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;

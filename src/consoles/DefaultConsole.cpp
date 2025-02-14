@@ -2,7 +2,7 @@
 // Name        : DefaultConsole
 // Author      : Riyufuchi
 // Created on  : Feb 19, 2024
-// Last Edit   : Jan 28, 2025
+// Last Edit   : Feb 5, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -12,24 +12,20 @@ namespace ConsoleLib
 DefaultConsole::DefaultConsole()
 {
 }
-void DefaultConsole::resetTextColor()
+void DefaultConsole::disableCustomFG()
 {
 	//std::cout << "Nothing to reset\n";
 }
-void DefaultConsole::defaultTextColor()
+void DefaultConsole::enableCustomFG()
 {
 	//std::cout << "Default console have already output in default color\n";
 }
-void DefaultConsole::setTextColor([[maybe_unused]] Color color)
+void DefaultConsole::enableCustomFG([[maybe_unused]] Color color)
 {
 	//std::cout << "Color [" << color.red << ";" << color.green << ";" << color.blue << "] can't be set by default console\n";
 }
 void DefaultConsole::setDefaultTextColor([[maybe_unused]] Color color)
 {
-}
-void DefaultConsole::out(const char* text)
-{
-	std::cout << text;
 }
 void DefaultConsole::out(std::string text)
 {

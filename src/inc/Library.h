@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#define _VERSION "4.4"
+#define _VERSION "4.5"
 
 namespace ConsoleLib
 {

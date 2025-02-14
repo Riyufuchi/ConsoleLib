@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : 20.07.2020
-// Last Edit   : Mar 27, 2024
+// Last Edit   : Feb 5, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -13,15 +13,15 @@ UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})
 {
 	setDefaultTextColor(defaultColor);
 }
-void UnixConsole::resetTextColor()
+void UnixConsole::disableCustomFG()
 {
 	std::cout << "\e[m";
 }
-void UnixConsole::defaultTextColor()
+void UnixConsole::enableCustomFG()
 {
 	std::cout << defColorEscCode;
 }
-void UnixConsole::setTextColor(Color color)
+void UnixConsole::enableCustomFG(Color color)
 {
 	std::cout << "\e[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m";
 }
@@ -35,10 +35,6 @@ void UnixConsole::setDefaultTextColor(Color color)
 Color UnixConsole::getDefaultTextColor()
 {
 	return defaultColor;
-}
-void UnixConsole::out(const char* text)
-{
-	std::cout << defColorEscCode << text << "\e[m";
 }
 void UnixConsole::out(std::string text)
 {

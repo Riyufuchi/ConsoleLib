@@ -71,9 +71,9 @@ void ConsoleUtils::header(std::string text)
 void ConsoleUtils::header(std::string text, IConsole& console, Color textColor)
 {
 	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
-	console.setTextColor(textColor);
+	console.enableCustomFG(textColor);
 	console.out(line + text + "\n" + line);
-	console.resetTextColor();
+	console.disableCustomFG();
 }
 
 int ConsoleUtils::basicMenu(int lenght, const char* menu[])

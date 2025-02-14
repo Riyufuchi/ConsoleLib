@@ -2,7 +2,7 @@
 // Name        : WindowsConsole
 // Author      : Riyufuchi
 // Created on  : 28.02.2024
-// Last Edit   : Mar 27, 2024
+// Last Edit   : Feb 5, 2025
 //============================================================================
 
 #ifdef _WIN32
@@ -38,7 +38,6 @@ namespace ConsoleLib
 		// Getters
 		Color getDefaultTextColor() override;
 		// Write methods
-		void out(const char* text) override;
 		void out(std::string text) override;
 		void out(Color color, std::string text) override;
 		void out(short int r, short int g, short int b, std::string text) override;
