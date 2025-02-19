@@ -21,7 +21,7 @@ Library::~Library()
 }
 void Library::aboutLibrary()
 {
-	std::cout << "ConsoleLib " << _VERSION << "\n";
-	printf("Compiled on: %s %s\nC++ version: %ld\n\n%s\n", __DATE__, __TIME__, __cplusplus, _COPYRIGHT_HEADER);
+	std::cout << "ConsoleLib " << _VERSION << "\n" << _COPYRIGHT_HEADER;
+	printf("Compiled on: %s %s\nC++ version: %ld\n\n", __DATE__, __TIME__, __cplusplus);
 }
 } /* namespace ConsoleLib */

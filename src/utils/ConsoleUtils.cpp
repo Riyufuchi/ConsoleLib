@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : 27.10.2021
-// Last Edit   : Jan 25, 2025
+// Last Edit   : Feb 18, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -199,10 +199,11 @@ std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(i
 				return arguments;
 			}
 			arguments[currentArg] = std::vector<std::string> {}; // Add a new option with an empty vector for its values
+			currentArgV = currentArg;
 		}
 		else
 		{
-			arguments.begin()->second.push_back(currentArg); // Add value to the most recent option
+			arguments[currentArgV].push_back(currentArg); // Add value to the most recent option
 		}
 	}
 	message = "Argument parsing was successful.";
