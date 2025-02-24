@@ -1,8 +1,8 @@
 ﻿//============================================================================
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
-// Created on  : 27.10.2021
-// Last Edit   : Feb 18, 2025
+// Created on  : Oct 27, 2021
+// Last Edit   : Feb 24, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -147,6 +147,40 @@ void ConsoleUtils::createManual(std::string* args, int lenght)
 		std::cout << " |" << args[y].substr(++x) << "\n";
 	}
 	std::cout << line << "\n";
+}
+std::string ConsoleUtils::createTable(std::string* args, int lenght)
+{
+	std::stringstream tableStringStream;
+	int lineLenght = 1;
+	int lineLengthTemp = 0;
+	int columnWidth = 0;
+	int x = 0;
+	size_t pipeIndex = 0;
+	for (int i = 0; i < lenght; i++)
+	{
+		lineLengthTemp = args[i].length();
+		pipeIndex = args[i].find('|');
+		if (pipeIndex == std::string::npos)
+			pipeIndex = lineLengthTemp;
+		if (lineLengthTemp > lineLenght)
+			lineLenght = lineLengthTemp;
+		if (pipeIndex > static_cast<size_t>(columnWidth))
+			columnWidth = pipeIndex;
+	}
+	std::string line((lineLenght + columnWidth), '-');
+	tableStringStream << line << "\n";
+	tableStringStream << args[0].substr(0, x = args[0].find("|"));
+	tableStringStream << std::string(columnWidth - x, ' ');
+	tableStringStream << " |" << args[0].substr(++x) << "\n";
+	tableStringStream << line << "\n";
+	for (int y = 1; y < lenght; y++)
+	{
+		tableStringStream << args[y].substr(0, x = args[y].find("|"));
+		tableStringStream << std::string(columnWidth - x, ' ');
+		tableStringStream << " |" << args[y].substr(++x) << "\n";
+	}
+	tableStringStream << line << "\n";
+	return tableStringStream.str();
 }
 void ConsoleUtils::printArgumentPairs(const std::map<std::string, std::vector<std::string>>& argPairs)
 {

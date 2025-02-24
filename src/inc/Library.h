@@ -2,7 +2,7 @@
 // File       : Library.h
 // Author     : Riyufuchi
 // Created on : Mar 27, 2024
-// Last edit  : Jan 25, 2025
+// Last edit  : Feb 24, 2025
 // Copyright  : Copyright (c) Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -11,8 +11,10 @@
 #define _CONSOLE_LIB_LIBRARY_H_
 
 #include <iostream>
+#include <string>
+#include <format>
 
-#define _VERSION "4.6"
+#define _VERSION "4.7"
 
 namespace ConsoleLib
 {
@@ -22,7 +24,7 @@ public:
 	static constexpr const char* VERSION = _VERSION;
 	Library();
 	~Library();
-	static void aboutLibrary();
+	static std::string aboutLibrary();
 };
 } /* namespace ConsoleLib */
 #endif /* _CONSOLE_LIB_LIBRARY_H_ */
