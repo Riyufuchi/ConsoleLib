@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Feb 24, 2025
+// Last Edit   : Feb 25, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -82,19 +82,28 @@ int ConsoleUtils::basicMenu(int lenght, const char* menu[])
 	{
 		printf("%d. %s \n", i + 1, menu[i]);
 	}
-	int result = getIntSafe(1, lenght) - 1;
-	return result;
+	return getIntSafe(1, lenght) - 1;
 }
 
-int ConsoleUtils::basicMenu(std::vector<const char*> menu)
+int ConsoleUtils::basicMenu(std::vector<const char*>& menu)
 {
 	const int LENGHT = menu.size();
 	for(int i = 0; i < LENGHT; i++)
 	{
 		printf("%d. %s \n", i + 1, menu[i]);
 	}
-	int result = getIntSafe(1, LENGHT) - 1;
-	return result;
+	return getIntSafe(1, LENGHT) - 1;
+}
+
+int ConsoleUtils::basicMenu(std::vector<std::string>& menu, IConsole& console)
+{
+	int index = 1;
+	for (const std::string& text : menu)
+	{
+		console.out(std::format("{}. {}\n", index, text));
+		index++;
+	}
+	return getIntSafe(1, index - 1) - 1;
 }
 
 void ConsoleUtils::listFilesInFolder(std::string workspacePath)

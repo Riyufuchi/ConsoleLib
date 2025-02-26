@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Feb 24, 2025
+// Last Edit   : Feb 25, 2025
 //============================================================================
 
 #ifndef _CONSOLE_UTILITY_H_
@@ -13,6 +13,7 @@
 #include <filesystem>
 #include <vector>
 #include <map>
+#include <format>
 
 #include "IConsole.hpp"
 
@@ -49,7 +50,8 @@ public:
 	static void header(std::string);
 	static void header(std::string text, IConsole& console, Color textColor);
 	static int basicMenu(int lenght, const char* menu[]);
-	static int basicMenu(std::vector<const char*> menu);
+	static int basicMenu(std::vector<const char*>& menu);
+	static int basicMenu(std::vector<std::string>& menu, IConsole& console);
 	static void createManual(std::string* args, int lenght);
 	static std::string createTable(std::string* args, int lenght);
 	static void listFilesInFolder(std::string workspacePath);
