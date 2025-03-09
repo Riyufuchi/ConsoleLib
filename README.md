@@ -18,15 +18,7 @@ Library for easier working with console/terminal. I made this out of boredom so 
 
 ### ConsoleLib
 
-This namespace contains mainly original classes, that were inteded to be in this library.
-
-### DataUtils
-
-Contains utils to work with data.
-
-### SufuServer
-
-Contains basic and "experimatal" networking utils
+This namespace consaints everyrhing in this library to avoid confusion.
 
 ## Compilation
 

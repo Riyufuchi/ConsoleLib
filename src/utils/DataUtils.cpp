@@ -24,6 +24,8 @@ bool DataUtils::isNumber(const std::string& s)
 	char c = ' ';
 
 	for (size_t i = 0; i < LENGHT; ++i)
+	{
+		c = s[i];
 		if (std::isdigit(c))
 			continue;
 		else if (c == '-')
@@ -33,6 +35,7 @@ bool DataUtils::isNumber(const std::string& s)
 		}
 		else
 			return false;
+	}
 
 
 	if (s[0] == '-' && s.size() == 1)
