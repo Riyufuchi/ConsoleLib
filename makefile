@@ -18,6 +18,11 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
 LIB_NAME = libConsoleLib.a
 LIB_TARGET = $(BUILD_DIR)/$(LIB_NAME)
 
+# Unit testing
+TEST_SRC_FILES = $(wildcard test/*.cpp)
+TEST_OBJ_FILES = $(patsubst test/%.cpp,$(BUILD_DIR)/%.o,$(TEST_SRC_FILES))
+TEST_BINARY = $(BUILD_DIR)/test
+
 # Targets
 all: $(LIB_TARGET)
 
@@ -33,5 +38,15 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 
 clean:
 	rm -rf $(BUILD_DIR) $(LIB_TARGET)
+	
+test: all $(TEST_BINARY)
+	$(TEST_BINARY)
+
+$(TEST_BINARY): $(TEST_OBJ_FILES) $(LIB_TARGET)
+	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -Igoogletest/include \
+	    -o $@ $^ -Lgoogletest/build -lgtest -lgtest_main -pthread
+
+$(BUILD_DIR)/%.o: test/%.cpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -I$(INC_DIR) -Igoogletest/include -c $< -o $@
 
 .PHONY: all clean

@@ -28,6 +28,16 @@ This namespace consaints everyrhing in this library to avoid confusion.
    make
    ```
 
+## Testing
+
+For testing is used Google Test framework
+
+   ```bash
+   sudo apt install libgtest-dev
+   # Then use makefile
+   make test
+   ```
+
 ## Donate
 
 I'm a 🇨🇿 student, so a few dollars will be enough. If you are planning to use this library in a commercial application, then it would be fair if you would send more, possibly a small share of 5-10% of monthly profits.
