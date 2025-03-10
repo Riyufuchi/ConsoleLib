@@ -2,23 +2,17 @@
 
 - [About](#about)
 - [Project guide](#project-guide)
-- [Namespaces](#namespaces)
 - [Compilation](#compilation)
+- [Testing](#testing)
 - [Donate](#donate)
 
 ## About
 
-Library for easier working with console/terminal. I made this out of boredom so implementation might not be ideal as this used to be only in one project, but my other C++ project might benefit from this, hence that is why I made this library as a collection of my utility classes.
+Library for easier working with console/terminal and other stuff as well. I made this out of boredom so implementation might not be ideal as this used to be part of another project, but my other C++ projects might benefit from this library/collection of utility classes.
 
 ## Project guide
 
 - .hpp is used when there is no coresponding .cpp file
-
-## Namespaces
-
-### ConsoleLib
-
-This namespace consaints everyrhing in this library to avoid confusion.
 
 ## Compilation
 
@@ -30,9 +24,10 @@ This namespace consaints everyrhing in this library to avoid confusion.
 
 ## Testing
 
-For testing is used Google Test framework
+For testing Google Test framework is used
 
    ```bash
+   # Install dependency
    sudo apt install libgtest-dev
    # Then use makefile
    make test
