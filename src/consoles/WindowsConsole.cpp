@@ -30,6 +30,14 @@ namespace ConsoleUtility
 	WindowsConsole::~WindowsConsole()
 	{
 	}
+	
+	void enableVirtualTerminalProcessing() // Allows Unix style escape codes
+	{
+		HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+		DWORD dwMode = 0;
+		GetConsoleMode(hOut, &dwMode);
+		SetConsoleMode(hOut, dwMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+	}
 
 	void WindowsConsole::resetTextColor()
 	{

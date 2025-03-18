@@ -68,6 +68,12 @@ void ConsoleUtils::header(std::string text)
 	std::cout << line << "\n" << text << "\n" << line << std::endl;
 }
 
+void ConsoleUtils::header(std::string text, IConsole& console)
+{
+	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
+	console.out(line + text + "\n" + line);
+}
+
 void ConsoleUtils::header(std::string text, IConsole& console, Color textColor)
 {
 	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");

@@ -9,7 +9,8 @@
 #ifndef SRC_INC_ICONSOLE_HPP_
 #define SRC_INC_ICONSOLE_HPP_
 
-#include <sstream>
+#include <iostream>
+#include <string>
 
 #include "ColorUtils.h"
 

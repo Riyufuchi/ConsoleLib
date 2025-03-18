@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "TimeUtils.h"
+#include "../src/inc/TimeUtils.h"
 
 using namespace ConsoleLib;
 
