@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : Jul 20, 2020
-// Last Edit   : Feb 24, 2025
+// Last Edit   : Mar 23, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -40,6 +40,11 @@ void UnixConsole::out(std::string text)
 {
 	std::cout << defColorEscCode << text << "\x1B[m";
 }
+void UnixConsole::outHighlighted(std::string text)
+{
+	std::cout << HIGHLIGHT << defColorEscCode << text << RESET;
+
+}
 void UnixConsole::out(Color color, std::string text)
 {
 	std::cout << "\x1B[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m" << text << "\x1B[m";
@@ -65,4 +70,5 @@ UnixConsole::~UnixConsole()
 {
 	std::cout << "Destructed Unix console\n";
 }
+
 }

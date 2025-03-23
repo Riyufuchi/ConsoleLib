@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.h
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Mar 15, 2025
+// Last edit  : Mar 23, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -35,7 +35,7 @@ private:
 	IConsole& console;
 	std::vector<std::pair<std::string, std::function<void()>>>& menu;
 	bool runMenu;
-	int highlightedOptionID;
+	size_t highlightedOptionID;
 	void highlight();
 	void resetHiglight();
 	void clearConsole();

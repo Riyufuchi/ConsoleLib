@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.cpp
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Mar 15, 2025
+// Last edit  : Mar 23, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -60,13 +60,10 @@ void ConsoleMenu::printMenu()
 	for (size_t i = 0; i < menu.size(); ++i)
 	{
 		if (i == highlightedOptionID)
-		{
-			std::cout << HIGHLIGHT;
-			console.out(menu[i]);
-			std::cout << RESET << std::endl;
-		}
+			console.outHighlighted(menu[i]);
 		else
-			console.out(menu[i] + "\n");
+			console.out(menu[i]);
+		std::cout << "\n";
 	}
 }
 

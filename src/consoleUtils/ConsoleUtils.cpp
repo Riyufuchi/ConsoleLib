@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Feb 25, 2025
+// Last Edit   : Mar 23, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -213,6 +213,31 @@ void ConsoleUtils::printArgumentPairs(const std::map<std::string, std::vector<st
 		std::cout << "]\n";
 	}
 }
+void ConsoleUtils::printArgumentPairs(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs)
+{
+	for (const std::pair<std::string, std::vector<std::string>>& argument : argPairs)
+	{
+		std::cout << argument.first << ": [";
+		for (size_t i = 0; i < argument.second.size(); ++i)
+		{
+			std::cout << argument.second[i];
+			if (i < argument.second.size() - 1)
+			{
+				std::cout << ", ";
+			}
+		}
+		std::cout << "]\n";
+	}
+}
+bool ConsoleUtils::argumentsContains(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value)
+{
+	for (const std::pair<std::string, std::vector<std::string>>& argument : argPairs)
+	{
+		if (argument.first == value)
+			return true;
+	}
+	return false;
+}
 std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(int argc, char** argv, bool& success, std::string& message)
 {
 	std::map<std::string, std::vector<std::string>> arguments;
@@ -258,4 +283,42 @@ std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(i
 	message = "Argument parsing was successful.";
 	return arguments;
 }
+
+std::vector<std::pair<std::string, std::vector<std::string>>> ConsoleUtils::analyzeArgumentsInOrder(int argc, char **argv, bool &success, std::string &message)
+{
+	std::vector<std::pair<std::string, std::vector<std::string>>> arguments;
+	success = true;
+	message.clear();
+
+	if (argc < 2)
+	{
+		success = true;
+		message = "No arguments provided.";
+		return arguments;
+	}
+
+	std::string currentArg = argv[1];
+	if (!(currentArg.starts_with("--") || currentArg.starts_with("-"))) // Check if first argument is't just an argument
+	{
+		success = false;
+		message = "Value without option: " + currentArg;
+		return arguments;
+	}
+
+	for (int i = 1; i < argc; ++i)
+	{
+		currentArg = argv[i];
+		if (currentArg.starts_with("--") || currentArg.starts_with("-"))
+		{
+			arguments.push_back(std::pair<std::string, std::vector<std::string>>(currentArg, std::vector<std::string> {})); // Add a new option with an empty vector for its values
+		}
+		else
+		{
+			arguments.back().second.push_back(currentArg); // Add value to the most recent option
+		}
+	}
+	message = "Argument parsing was successful.";
+	return arguments;
+}
+
 } // Namespace

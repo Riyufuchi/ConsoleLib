@@ -2,7 +2,7 @@
 // Name        : DefaultConsole
 // Author      : Riyufuchi
 // Created on  : Feb 19, 2024
-// Last Edit   : Feb 5, 2025
+// Last Edit   : Mar 23, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -30,6 +30,11 @@ void DefaultConsole::setDefaultTextColor([[maybe_unused]] Color color)
 void DefaultConsole::out(std::string text)
 {
 	std::cout << text;
+}
+void DefaultConsole::outHighlighted(std::string text)
+{
+	std::cout << text;
+
 }
 void DefaultConsole::out([[maybe_unused]] Color color, std::string text)
 {

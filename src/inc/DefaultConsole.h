@@ -2,7 +2,7 @@
 // File       : DefaultConsole.h
 // Author     : Riyufuchi
 // Created on : Feb 19, 2024
-// Last edit  : Feb 5, 2025
+// Last edit  : Mar 23, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -30,6 +30,7 @@ public:
 	void enableCustomFG([[maybe_unused]] Color color) override;
 	// Write methods
 	void out(std::string text) override;
+	virtual void outHighlighted(std::string text) override;
 	void out([[maybe_unused]] Color color, std::string text) override;
 	void out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;
 	void err(std::string text) override;

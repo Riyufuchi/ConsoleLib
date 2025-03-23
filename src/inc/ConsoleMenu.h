@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.h
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Mar 15, 2025
+// Last edit  : Mar 23, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -24,8 +24,8 @@
 #include "IConsole.hpp"
 
 #define CLEAR_SCREEN "\x1B[3J\x1B[H\x1B[2J"
-#define HIGHLIGHT "\033[7m"
-#define RESET "\033[0m"
+#define HIGHLIGHT "\x1B[7m"
+#define RESET "\x1B[0m"
 
 namespace ConsoleLib
 {
@@ -36,7 +36,7 @@ private:
 	std::vector<std::string>& menu;
 	std::function<void()> printHeader;
 	bool runMenu;
-	int highlightedOptionID;
+	size_t highlightedOptionID;
 	void highlight();
 	void resetHiglight();
 	void clearConsole();

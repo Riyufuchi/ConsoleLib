@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : Jul 20, 2020
-// Last Edit   : Feb 5, 2025
+// Last Edit   : Mar 23, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -13,6 +13,9 @@
 #include <sstream>
 
 #include "IConsole.hpp"
+
+#define HIGHLIGHT "\x1B[7m"
+#define RESET "\x1B[0m"
 
 namespace ConsoleLib
 {
@@ -26,6 +29,7 @@ public:
 	~UnixConsole();
 	void disableCustomFG() override;
 	void enableCustomFG() override;
+	virtual void outHighlighted(std::string text) override;
 	// Out methods
 	virtual void out(std::string text) override;
 	virtual void out(Color color, std::string text) override;
