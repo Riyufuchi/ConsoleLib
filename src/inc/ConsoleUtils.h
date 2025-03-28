@@ -60,6 +60,7 @@ public:
 	static void printArgumentPairs(const std::map<std::string, std::vector<std::string>>& argPairs);
 	static void printArgumentPairs(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs);
 	static bool argumentsContains(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value);
+	static bool argumentsRemove(std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value);
 	static std::map<std::string, std::vector<std::string>> analyzeArguments(int argc, char** argv, bool& success, std::string& message);
 	static std::vector<std::pair<std::string, std::vector<std::string>>> analyzeArgumentsInOrder(int argc, char** argv, bool& success, std::string& message);
 };

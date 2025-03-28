@@ -238,6 +238,18 @@ bool ConsoleUtils::argumentsContains(const std::vector<std::pair<std::string, st
 	}
 	return false;
 }
+bool ConsoleUtils::argumentsRemove(std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value)
+{
+	int id = 0;
+	for (std::pair<std::string, std::vector<std::string>>& argument : argPairs)
+	{
+		if (argument.first == value)
+			break;
+		id++;
+	}
+	argPairs.erase(argPairs.begin() + id);
+	return true;
+}
 std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(int argc, char** argv, bool& success, std::string& message)
 {
 	std::map<std::string, std::vector<std::string>> arguments;
@@ -320,5 +332,4 @@ std::vector<std::pair<std::string, std::vector<std::string>>> ConsoleUtils::anal
 	message = "Argument parsing was successful.";
 	return arguments;
 }
-
 } // Namespace
