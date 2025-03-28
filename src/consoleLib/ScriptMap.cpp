@@ -28,10 +28,10 @@ bool ScriptMap::loadScripts(std::string path)
 	{
 		for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(path))
 		{
-			std::ifstream infile(entry);
+			std::ifstream infile(entry.path());
 			if (infile)
 			{
-				this[entry.path().filename()] = std::string((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
+				(*this)[entry.path().filename()] = std::string((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
 			}
 			else
 			{
