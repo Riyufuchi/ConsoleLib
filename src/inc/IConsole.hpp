@@ -2,7 +2,7 @@
 // Name        : IConsole
 // Author      : Riyufuchi
 // Created on  : Oct 13, 2023
-// Last Edit   : Mar 23, 2025
+// Last Edit   : Mar 31, 2025
 // Description : This a base class Classes working with console
 //============================================================================
 
@@ -30,7 +30,7 @@ public:
 	virtual void out(const Color& color, const std::string& text) = 0;
 	virtual void out(short int r, short int g, short int b, const std::string& text) = 0;
 	virtual void err(const std::string& text) = 0;
-	virtual void err(const Color& color, const std::string&) = 0;
+	virtual void err(const Color& color, const std::string& text) = 0;
 	virtual void err(short int r, short int g, short int b, const std::string& text) = 0;
 	// Setters
 	virtual void setDefaultTextColor(Color color) = 0;

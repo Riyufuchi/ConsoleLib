@@ -2,11 +2,12 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : Jul 20, 2020
-// Last Edit   : Mar 23, 2025
+// Last Edit   : Mar 31, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
 #include "../inc/UnixConsole.h"
+
 namespace ConsoleLib
 {
 UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})

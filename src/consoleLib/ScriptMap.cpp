@@ -12,7 +12,7 @@
 namespace ConsoleLib
 {
 
-ScriptMap::ScriptMap() : unordered_map()
+ScriptMap::ScriptMap()
 {
 }
 
@@ -31,7 +31,7 @@ bool ScriptMap::loadScripts(std::string path)
 			std::ifstream infile(entry.path());
 			if (infile)
 			{
-				(*this)[entry.path().filename()] = std::string((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
+				scripts[entry.path().filename()] = std::string((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
 			}
 			else
 			{
@@ -45,6 +45,13 @@ bool ScriptMap::loadScripts(std::string path)
 		return false;
 	}
 	return true;
+}
+
+std::string ScriptMap::getScript(const std::string& scriptname) const
+{
+	if (scripts.contains(scriptname))
+		return scripts.find(scriptname)->second;
+	return "";
 }
 
 } // Namespace

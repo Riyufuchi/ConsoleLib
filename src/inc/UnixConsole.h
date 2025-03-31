@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : Jul 20, 2020
-// Last Edit   : Mar 23, 2025
+// Last Edit   : Mar 31, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -35,16 +35,8 @@ public:
 	virtual void out(const Color& color, const std::string& text) override;
 	virtual void out(short int r, short int g, short int b, const std::string& text) override;
 	virtual void err(const std::string& text) override;
-	virtual void err(const Color& color, const std::string&) override;
+	virtual void err(const Color& color, const std::string& text) override;
 	virtual void err(short int r, short int g, short int b, const std::string& text) override;
-
-
-	/*virtual void out(const std::string& text) override;
-	virtual void out(Color color, std::string text) override;
-	virtual void out(short int r, short int g, short int b, std::string text) override;
-	virtual void err(std::string text) override;
-	virtual void err(Color color, std::string text) override;
-	virtual void err(short int r, short int g, short int b, std::string text) override;*/
 	// Setters
 	void setDefaultTextColor(Color color) override;
 	void enableCustomFG(Color color) override;

@@ -2,7 +2,7 @@
 // File       : DefaultConsole.h
 // Author     : Riyufuchi
 // Created on : Feb 19, 2024
-// Last edit  : Mar 23, 2025
+// Last edit  : Mar 31, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -34,16 +34,8 @@ public:
 	virtual void out(const Color& color, const std::string& text) override;
 	virtual void out(short int r, short int g, short int b, const std::string& text) override;
 	virtual void err(const std::string& text) override;
-	virtual void err(const Color& color, const std::string&) override;
+	virtual void err(const Color& color, const std::string& text) override;
 	virtual void err(short int r, short int g, short int b, const std::string& text) override;
-	/*
-	void out(const std::string& text) override;
-	virtual void outHighlighted(std::string text) override;
-	void out([[maybe_unused]] Color color, std::string text) override;
-	void out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;
-	void err(std::string text) override;
-	void err([[maybe_unused]] Color color, std::string text) override;
-	void err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;*/
 };
 }
 #endif /* SRC_INC_DEFAULTCONSOLE_H_ */
