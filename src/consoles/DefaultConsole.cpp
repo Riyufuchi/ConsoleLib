@@ -27,33 +27,33 @@ void DefaultConsole::enableCustomFG([[maybe_unused]] Color color)
 void DefaultConsole::setDefaultTextColor([[maybe_unused]] Color color)
 {
 }
-void DefaultConsole::out(std::string text)
+void DefaultConsole::out(const std::string& text)
 {
 	std::cout << text;
 }
-void DefaultConsole::outHighlighted(std::string text)
-{
-	std::cout << text;
-
-}
-void DefaultConsole::out([[maybe_unused]] Color color, std::string text)
-{
-	std::cout << text;
-}
-void DefaultConsole::out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text)
+void DefaultConsole::outHighlighted(const std::string& text)
 {
 	std::cout << text;
 
 }
-void DefaultConsole::err(std::string text)
+void DefaultConsole::out([[maybe_unused]] const Color& color, const std::string& text)
+{
+	std::cout << text;
+}
+void DefaultConsole::out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, const std::string& text)
+{
+	std::cout << text;
+
+}
+void DefaultConsole::err(const std::string& text)
 {
 	std::cerr << text;
 }
-void DefaultConsole::err([[maybe_unused]] Color color, std::string text)
+void DefaultConsole::err([[maybe_unused]] const Color& color, const std::string& text)
 {
 	std::cerr << text;
 }
-void DefaultConsole::err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text)
+void DefaultConsole::err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, const std::string& text)
 {
 	std::cerr << text;
 

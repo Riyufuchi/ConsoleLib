@@ -29,13 +29,21 @@ public:
 	void setDefaultTextColor([[maybe_unused]] Color color) override;
 	void enableCustomFG([[maybe_unused]] Color color) override;
 	// Write methods
-	void out(std::string text) override;
+	virtual void out(const std::string& text) override;
+	virtual void outHighlighted(const std::string& text) override;
+	virtual void out(const Color& color, const std::string& text) override;
+	virtual void out(short int r, short int g, short int b, const std::string& text) override;
+	virtual void err(const std::string& text) override;
+	virtual void err(const Color& color, const std::string&) override;
+	virtual void err(short int r, short int g, short int b, const std::string& text) override;
+	/*
+	void out(const std::string& text) override;
 	virtual void outHighlighted(std::string text) override;
 	void out([[maybe_unused]] Color color, std::string text) override;
 	void out([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;
 	void err(std::string text) override;
 	void err([[maybe_unused]] Color color, std::string text) override;
-	void err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;
+	void err([[maybe_unused]] short int r, [[maybe_unused]] short int g, [[maybe_unused]] short int b, std::string text) override;*/
 };
 }
 #endif /* SRC_INC_DEFAULTCONSOLE_H_ */

@@ -25,13 +25,13 @@ public:
 	virtual void enableCustomFG() = 0;
 	virtual void enableCustomFG(Color color) = 0;
 	// Output methods
-	virtual void out(std::string text) = 0;
-	virtual void outHighlighted(std::string text) = 0;
-	virtual void out(Color color, std::string text) = 0;
-	virtual void out(short int r, short int g, short int b, std::string text) = 0;
-	virtual void err(std::string text) = 0;
-	virtual void err(Color color, std::string text) = 0;
-	virtual void err(short int r, short int g, short int b, std::string text) = 0;
+	virtual void out(const std::string& text) = 0;
+	virtual void outHighlighted(const std::string& text) = 0;
+	virtual void out(const Color& color, const std::string& text) = 0;
+	virtual void out(short int r, short int g, short int b, const std::string& text) = 0;
+	virtual void err(const std::string& text) = 0;
+	virtual void err(const Color& color, const std::string&) = 0;
+	virtual void err(short int r, short int g, short int b, const std::string& text) = 0;
 	// Setters
 	virtual void setDefaultTextColor(Color color) = 0;
 	// Getters

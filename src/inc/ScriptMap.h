@@ -23,7 +23,7 @@ class ScriptMap : public std::unordered_map<std::string, std::string>
 {
 public:
 	ScriptMap();
-	virtual ~ScriptMap();
+	~ScriptMap();
 	bool loadScripts(std::string path = "");
 };
 }

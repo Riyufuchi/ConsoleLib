@@ -36,33 +36,33 @@ Color UnixConsole::getDefaultTextColor()
 {
 	return defaultColor;
 }
-void UnixConsole::out(std::string text)
+void UnixConsole::out(const std::string& text)
 {
 	std::cout << defColorEscCode << text << "\x1B[m";
 }
-void UnixConsole::outHighlighted(std::string text)
+void UnixConsole::outHighlighted(const std::string& text)
 {
 	std::cout << HIGHLIGHT << defColorEscCode << text << RESET;
 
 }
-void UnixConsole::out(Color color, std::string text)
+void UnixConsole::out(const Color& color, const std::string& text)
 {
 	std::cout << "\x1B[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m" << text << "\x1B[m";
 }
-void UnixConsole::out(short int r, short int g, short int b, std::string text)
+void UnixConsole::out(short int r, short int g, short int b, const std::string& text)
 {
 	std::cout << "\x1B[38;2;" << r << ";" << g << ";" << b << "m" << text << "\x1B[m";
 
 }
-void UnixConsole::err(std::string text)
+void UnixConsole::err(const std::string& text)
 {
 	std::cerr << "\x1B[38;2;" << 255 << ";0;0m" << text << "\x1B[m";
 }
-void UnixConsole::err(Color color, std::string text)
+void UnixConsole::err(const Color& color, const std::string& text)
 {
 	std::cerr << "\x1B[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m" << text << "\x1B[m";
 }
-void UnixConsole::err(short int r, short int g, short int b, std::string text)
+void UnixConsole::err(short int r, short int g, short int b, const std::string& text)
 {
 	std::cerr << "\x1B[38;2;" << r << ";" << g << ";" << b << "m" << text << "\x1B[m";
 }
