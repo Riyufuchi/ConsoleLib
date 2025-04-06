@@ -23,8 +23,6 @@
 namespace ConsoleLib
 {
 
-using argumentVector = std::vector<std::pair<std::string, std::vector<std::string>>>;
-
 class ConsoleUtils
 {
 public:
@@ -60,12 +58,6 @@ public:
 	static void createManual(std::string* args, int lenght);
 	static std::string createTable(std::string* args, int lenght);
 	static void listFilesInFolder(std::string workspacePath);
-	static void printArgumentPairs(const std::map<std::string, std::vector<std::string>>& argPairs);
-	static void printArgumentPairs(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs);
-	static bool argumentsContains(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value);
-	static bool argumentsRemove(std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value);
-	static std::map<std::string, std::vector<std::string>> analyzeArguments(int argc, char** argv, bool& success, std::string& message);
-	static argumentVector analyzeArgumentsInOrder(int argc, char** argv, bool& success, std::string& message);
 };
 }
 #endif
