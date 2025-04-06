@@ -296,9 +296,9 @@ std::map<std::string, std::vector<std::string>> ConsoleUtils::analyzeArguments(i
 	return arguments;
 }
 
-std::vector<std::pair<std::string, std::vector<std::string>>> ConsoleUtils::analyzeArgumentsInOrder(int argc, char **argv, bool &success, std::string &message)
+argumentVector ConsoleUtils::analyzeArgumentsInOrder(int argc, char **argv, bool &success, std::string &message)
 {
-	std::vector<std::pair<std::string, std::vector<std::string>>> arguments;
+	argumentVector arguments;
 	success = true;
 	message.clear();
 

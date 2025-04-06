@@ -2,10 +2,13 @@
 Debug
 Release
 build
+bin
 
 # IDE files
 .cproject
 .settings
+.clangd
+.clang-format
 
 # Prerequisites
 *.d

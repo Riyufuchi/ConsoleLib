@@ -22,6 +22,9 @@
  */
 namespace ConsoleLib
 {
+
+using argumentVector = std::vector<std::pair<std::string, std::vector<std::string>>>;
+
 class ConsoleUtils
 {
 public:
@@ -62,7 +65,7 @@ public:
 	static bool argumentsContains(const std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value);
 	static bool argumentsRemove(std::vector<std::pair<std::string, std::vector<std::string>>>& argPairs, std::string value);
 	static std::map<std::string, std::vector<std::string>> analyzeArguments(int argc, char** argv, bool& success, std::string& message);
-	static std::vector<std::pair<std::string, std::vector<std::string>>> analyzeArgumentsInOrder(int argc, char** argv, bool& success, std::string& message);
+	static argumentVector analyzeArgumentsInOrder(int argc, char** argv, bool& success, std::string& message);
 };
 }
 #endif
