@@ -28,6 +28,7 @@ public:
 	~ScriptMap();
 	bool loadScripts(std::string path = "");
 	std::string getScript(const std::string& scriptname) const;
+	std::unordered_map<std::string, std::string>& getScriptMap();
 };
 }
 #endif /* SRC_INC_SCRIPTMAP_H_ */

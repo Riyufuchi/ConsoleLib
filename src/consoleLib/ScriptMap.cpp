@@ -54,4 +54,9 @@ std::string ScriptMap::getScript(const std::string& scriptname) const
 	return "";
 }
 
+std::unordered_map<std::string, std::string>& ScriptMap::getScriptMap()
+{
+	return scripts;
+}
+
 } // Namespace

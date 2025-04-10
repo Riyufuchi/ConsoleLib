@@ -128,6 +128,8 @@ argVector ArgumentParser::analyzeInOrder(int argc, char** argv, bool& success, s
 		return arguments;
 	}
 
+	arguments.reserve(argc);
+
 	std::string currentArg = argv[1];
 	if (!(currentArg.starts_with("--") || currentArg.starts_with("-"))) // Check if first argument is't just an argument
 	{
