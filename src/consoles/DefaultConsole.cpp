@@ -2,11 +2,12 @@
 // Name        : DefaultConsole
 // Author      : Riyufuchi
 // Created on  : Feb 19, 2024
-// Last Edit   : Mar 31, 2025
+// Last Edit   : Apr 15, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
 #include "../inc/DefaultConsole.h"
+
 namespace ConsoleLib
 {
 DefaultConsole::DefaultConsole()
@@ -33,7 +34,7 @@ void DefaultConsole::out(const std::string& text)
 }
 void DefaultConsole::outHighlighted(const std::string& text)
 {
-	std::cout << text;
+	std::cout << "! " << text << " !";
 
 }
 void DefaultConsole::out([[maybe_unused]] const Color& color, const std::string& text)

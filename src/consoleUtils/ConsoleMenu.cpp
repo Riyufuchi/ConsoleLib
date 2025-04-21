@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.cpp
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Mar 23, 2025
+// Last edit  : Apr 16, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -12,7 +12,7 @@
 namespace ConsoleLib
 {
 
-ConsoleMenu::ConsoleMenu(IConsole& console, std::vector<std::string>& menu, std::function<void()> printHeader) : console(console), menu(menu), printHeader(printHeader), runMenu(true), highlightedOptionID(0)
+ConsoleMenu::ConsoleMenu(IConsole& console, std::vector<std::string>& menu, std::function<void()> printHeader) : console(console), menu(menu), printHeader(printHeader), runMenu(true), highlightedOptionID(0), key(' ')
 {
 }
 
@@ -20,13 +20,24 @@ ConsoleMenu::~ConsoleMenu()
 {
 }
 
+void ConsoleMenu::flushInputBuffer()
+{
+#ifdef _WIN32
+	while (_kbhit()) _getch(); // clears typed characters
+#else
+	tcflush(STDIN_FILENO, TCIFLUSH); // On POSIX
+#endif
+}
+
 int ConsoleMenu::runMenuLoop()
 {
+	runMenu = true; // loop must runs every time this function is called
 	if (menu.empty())
 		runMenu = false;
-	char key = ' ';
+	key = ' ';
 	highlightedOptionID = 0;
 	disableLineBuffering();
+	flushInputBuffer();
 	while (runMenu)
 	{
 		clearConsole();
@@ -41,7 +52,7 @@ int ConsoleMenu::runMenuLoop()
 				key = getch(); // Get the final character
 				switch (key)
 				{
-					case 'A': highlightedOptionID = (highlightedOptionID - 1 + menu.size()) % menu.size(); break; // Up Arrow
+					case 'A': highlightedOptionID = (highlightedOptionID + menu.size() - 1) % menu.size(); break; // Up Arrow
 					case 'B': highlightedOptionID = (highlightedOptionID + 1) % menu.size(); break; // Down Arrow
 				}
 			}
@@ -96,11 +107,11 @@ void ConsoleMenu::enableLineBuffering()
 char ConsoleMenu::getch()
 {
 	#ifdef _WIN32
-		return _getch();  // Windows
+		return _getch(); // Windows
 	#else
 		char buf = 0;
-		ssize_t size = read(STDIN_FILENO, &buf, 1);
-		return (size > 0) ? buf : 0;  // Unix-like systems
+		//ssize_t size = read(STDIN_FILENO, &buf, 1);
+		return (read(STDIN_FILENO, &buf, 1) > 0) ? buf : 0; // Unix-like systems
 	#endif
 }
 
@@ -109,20 +120,12 @@ void ConsoleMenu::exitMenuLoop()
 	runMenu = false;
 }
 
-void ConsoleMenu::highlight()
-{
-	std::cout << HIGHLIGHT;
-}
-void ConsoleMenu::resetHiglight()
-{
-	std::cout << RESET;
-}
 void ConsoleMenu::clearConsole()
 {
 	#ifdef _WIN32
-		system("cls");  // Windows
+		system("cls"); // Windows
 	#else
-		std::cout << "\033[2J\033[1;1H" << std::flush;  // Unix-like systems
+		std::cout << CLEAR_SCREEN << std::flush; // Unix-like systems
 	#endif
 }
 

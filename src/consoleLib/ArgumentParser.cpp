@@ -62,11 +62,13 @@ bool ArgumentParser::remove(argVector& argPairs, const std::string& value)
 	for (argVectorItem& argument : argPairs)
 	{
 		if (argument.first == value)
-			break;
+		{
+			argPairs.erase(argPairs.begin() + id);
+			return true;
+		}
 		id++;
 	}
-	argPairs.erase(argPairs.begin() + id);
-	return true;
+	return false;
 }
 
 argMap ArgumentParser::analyze(int argc, char** argv, bool& success, std::string& message)
