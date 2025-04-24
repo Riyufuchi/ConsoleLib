@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Mar 23, 2025
+// Last Edit   : Apr 21, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -197,4 +197,16 @@ std::string ConsoleUtils::createTable(std::string* args, int lenght)
 	tableStringStream << line << "\n";
 	return tableStringStream.str();
 }
+
+IConsole* ConsoleUtils::createPlatformConsole()
+{
+	#if defined(__linux__) || defined(__APPLE__)
+		return new UnixConsole();
+	#elif defined(_WIN32)
+		return new WindowsConsole();
+	#else
+		return new DefaultConsole();
+	#endif
+}
+
 } // Namespace

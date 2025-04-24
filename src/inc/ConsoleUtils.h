@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Mar 21, 2025
+// Last Edit   : Apr 21, 2025
 //============================================================================
 
 #ifndef _CONSOLE_UTILITY_H_
@@ -16,6 +16,12 @@
 #include <format>
 
 #include "IConsole.hpp"
+#include "UnixConsole.h"
+#include "DefaultConsole.h"
+
+#ifdef _WIN32
+	#include "WindowsConsole.h"
+#endif
 
 /**
  * This class helps with console interactions
@@ -28,6 +34,7 @@ class ConsoleUtils
 public:
 	ConsoleUtils();
 	~ConsoleUtils();
+	static IConsole* createPlatformConsole();
 	static bool repeat();
 	static bool yesNo(const char* text);
 	static int getIntSafe();

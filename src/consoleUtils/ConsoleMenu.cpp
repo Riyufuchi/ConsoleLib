@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.cpp
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Apr 16, 2025
+// Last edit  : Apr 24, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -110,7 +110,6 @@ char ConsoleMenu::getch()
 		return _getch(); // Windows
 	#else
 		char buf = 0;
-		//ssize_t size = read(STDIN_FILENO, &buf, 1);
 		return (read(STDIN_FILENO, &buf, 1) > 0) ? buf : 0; // Unix-like systems
 	#endif
 }

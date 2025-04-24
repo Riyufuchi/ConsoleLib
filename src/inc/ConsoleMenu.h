@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.h
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Apr 16, 2025
+// Last edit  : Apr 24, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -38,8 +38,6 @@ private:
 	size_t highlightedOptionID;
 	char key;
 	void clearConsole();
-	void disableLineBuffering();
-	void enableLineBuffering();
 	void printMenu();
 	char getch();
 	void flushInputBuffer();
@@ -48,6 +46,8 @@ public:
 	virtual ~ConsoleMenu();
 	void exitMenuLoop();
 	int runMenuLoop();
+	void disableLineBuffering();
+	void enableLineBuffering();
 };
 
 } /* namespace ConsoleArt */
