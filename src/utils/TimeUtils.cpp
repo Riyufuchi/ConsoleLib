@@ -2,7 +2,7 @@
 // File       : TimeUtils.cpp
 // Author     : Riyufuchi
 // Created on : Mar 26, 2024
-// Last edit  : Jan 25, 2025
+// Last edit  : May 07, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: ConsoleArt
 //==============================================================================
@@ -44,4 +44,15 @@ Date TimeUtils::todaysDate()
 	//today.day = localTime->tm_mday; // tm_mday is day of the month
 	return Date{localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900};
 }
+
+std::string TimeUtils::dateToString(const Date& date)
+{
+	std::ostringstream oss;
+	oss << std::setw(2) << std::setfill('0') << date.day << "."
+	<< std::setw(2) << std::setfill('0') << date.month << "."
+	<< date.year;
+	return oss.str();
+}
+
+
 } /* namespace ConsoleArt */

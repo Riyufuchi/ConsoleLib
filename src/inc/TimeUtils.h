@@ -2,7 +2,7 @@
 // File       : TimeUtils.h
 // Author     : Riyufuchi
 // Created on : Mar 26, 2024
-// Last edit  : Jan 25, 2025
+// Last edit  : May 07, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleArt
 //==============================================================================
@@ -12,6 +12,9 @@
 
 #include <chrono>
 #include <ctime>
+#include <iomanip>
+#include <sstream>
+
 
 namespace ConsoleLib
 {
@@ -36,6 +39,7 @@ public:
 	static long convertToMinutes(TimeStamp& timeStamp);
 	static long convertToHours(TimeStamp& timeStamp);
 	static Date todaysDate();
+	static std::string dateToString(const Date& date);
 };
 } /* namespace */
 #endif /* _OTHER_TIME_UTILS_H_ */
