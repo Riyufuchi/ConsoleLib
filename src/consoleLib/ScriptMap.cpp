@@ -24,10 +24,15 @@ bool ScriptMap::loadScripts(std::string path)
 {
 	if (path == "")
 		path = std::filesystem::current_path().generic_string();
+
 	try
 	{
 		for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(path))
 		{
+			// Skip if not a regular file (e.g., directory, symlink, device, etc.)
+			if (!entry.is_regular_file())
+				continue;
+
 			std::ifstream infile(entry.path());
 			if (infile)
 			{
@@ -35,15 +40,21 @@ bool ScriptMap::loadScripts(std::string path)
 			}
 			else
 			{
-				std::cerr << "Error: Cannot open script file: " << entry << "\n";
+				std::cerr << "Error -> Cannot open script file: " << entry.path() << "\n";
 			}
 		}
 	}
-	catch (std::runtime_error& e)
+	catch (const std::filesystem::filesystem_error& e)
 	{
-		std::cerr << "Error: Cannot load script files: " << e.what() << "\n";
+			std::cerr << "Filesystem error: " << e.what() << "\n";
+			return false;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Unexpected error: " << e.what() << "\n";
 		return false;
 	}
+
 	return true;
 }
 

@@ -2,7 +2,7 @@
 // Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : Nov 20, 2021
-// Last Edit   : Jan 28, 2025
+// Last Edit   : Sep 28, 2025
 //============================================================================
 #include "../inc/ColorUtils.h"
 
@@ -39,6 +39,7 @@ Color ColorUtils::getColor(ColorPallete color)
 		case SMARAGDINE: return Color{74,153,118};
 		case CONSOLE_ART_UNIX_DEFAULT: return Color{5, 195, 221};
 		case APERTURE_ORANGE: return Color{255, 157, 0};
+		case AMBER: return Color{255, 191, 0};
 		case TERMINAL_FG: return Color{211, 215, 207};
 		default: return Color{5, 195, 221};
 	}

@@ -2,7 +2,7 @@
 // Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : Nov 20, 2021
-// Last Edit   : Jan 27, 2025
+// Last Edit   : Sep 28, 2025
 //============================================================================
 
 #ifndef SRC_INC_COLOR_UTILS_H_
@@ -31,6 +31,7 @@ enum ColorPallete
 	SMARAGDINE,
 	CONSOLE_ART_UNIX_DEFAULT,
 	APERTURE_ORANGE,
+	AMBER,
 	TERMINAL_FG,
 	COLOR_COUNT // This can be used to determine the size of the enum
 };
@@ -52,6 +53,7 @@ public:
 		"SMARAGDINE",
 		"CONSOLE_ART_UNIX_DEFAULT",
 		"APERTURE_ORANGE",
+		"AMBER",
 		"TERMINAL_FG"
 	};
 	ColorUtils();
