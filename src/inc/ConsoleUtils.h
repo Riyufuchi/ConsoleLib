@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Apr 21, 2025
+// Last Edit   : Nov 09, 2025
 //============================================================================
 
 #ifndef _CONSOLE_UTILITY_H_
@@ -36,6 +36,7 @@ public:
 	~ConsoleUtils();
 	static IConsole* createPlatformConsole();
 	static bool repeat();
+	static bool waitForEnter();
 	static bool yesNo(const char* text);
 	static int getIntSafe();
 	static int getIntSafe(int min, int max);

@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Apr 21, 2025
+// Last Edit   : Nov 09, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
@@ -14,13 +14,17 @@ ConsoleUtils::ConsoleUtils()
 ConsoleUtils::~ConsoleUtils()
 {
 }
-bool ConsoleUtils::yesNo(const char* text)
+bool ConsoleUtils::waitForEnter()
 {
 	std::string choice;
-	std::cout << text;
 	getline(std::cin, choice);
 	//std::cin.ignore(); //clears buffer
-	return (choice == "y" || choice == "Y" || choice == "");
+	return (choice == "" || choice == "y" || choice == "Y");
+}
+bool ConsoleUtils::yesNo(const char* text)
+{
+	std::cout << text;
+	return waitForEnter();
 }
 
 bool ConsoleUtils::repeat()
