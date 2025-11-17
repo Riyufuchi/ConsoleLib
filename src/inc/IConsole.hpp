@@ -2,7 +2,7 @@
 // Name        : IConsole
 // Author      : Riyufuchi
 // Created on  : Oct 13, 2023
-// Last Edit   : Mar 31, 2025
+// Last Edit   : Nov 17, 2025
 // Description : This a base class Classes working with console
 //============================================================================
 
@@ -24,6 +24,8 @@ public:
 	virtual void disableCustomFG() = 0;
 	virtual void enableCustomFG() = 0;
 	virtual void enableCustomFG(Color color) = 0;
+	virtual void enableCustomBG(Color color) = 0;
+	virtual void disableCustomBG() = 0;
 	// Output methods
 	virtual void out(const std::string& text) = 0;
 	virtual void outHighlighted(const std::string& text) = 0;

@@ -2,7 +2,7 @@
 // File       : DefaultConsole.h
 // Author     : Riyufuchi
 // Created on : Feb 19, 2024
-// Last edit  : Mar 31, 2025
+// Last edit  : Nov 17, 2025
 // Copyright  : Copyright (c) 2024, Riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -23,11 +23,13 @@ private:
 public:
 	DefaultConsole();
 	~DefaultConsole();
-	void disableCustomFG() override;
-	void enableCustomFG() override;
+	virtual void disableCustomFG() override;
+	virtual void enableCustomFG() override;
+	virtual void disableCustomBG() override;
+	virtual void enableCustomBG(Color color) override;
 	// Setters
-	void setDefaultTextColor([[maybe_unused]] Color color) override;
-	void enableCustomFG([[maybe_unused]] Color color) override;
+	virtual void setDefaultTextColor([[maybe_unused]] Color color) override;
+	virtual void enableCustomFG([[maybe_unused]] Color color) override;
 	// Write methods
 	virtual void out(const std::string& text) override;
 	virtual void outHighlighted(const std::string& text) override;

@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : Jul 20, 2020
-// Last Edit   : Mar 31, 2025
+// Last Edit   : Nov 17, 2025
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -13,6 +13,14 @@ namespace ConsoleLib
 UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})
 {
 	setDefaultTextColor(defaultColor);
+}
+void UnixConsole::disableCustomBG()
+{
+	std::cout << RESET;
+}
+void UnixConsole::enableCustomBG(Color color)
+{
+	std::cout << "\x1B[48;2;" << color.red << ";" << color.green << ";" << color.blue << "m";
 }
 void UnixConsole::disableCustomFG()
 {
