@@ -2,7 +2,7 @@
 // File       : RealNumber.h
 // Author     : riyufuchi
 // Created on : Jun 16, 2025
-// Last edit  : Jun 19, 2025
+// Last edit  : Nov 20, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -40,6 +40,8 @@ public:
 	template<Arithmetic T>
 	RealNumber(T value) : number(static_cast<realNumberType>(value))
 	{}
+
+	friend std::ostream& operator<<(std::ostream& os, const RealNumber& img);
 
 	explicit operator realNumberType() const
 	{

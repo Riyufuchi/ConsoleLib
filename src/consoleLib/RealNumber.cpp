@@ -2,7 +2,7 @@
 // File       : RealNumber.cpp
 // Author     : riyufuchi
 // Created on : Jun 16, 2025
-// Last edit  : Jun 18, 2025
+// Last edit  : Nov 20, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleLib
 //==============================================================================
@@ -20,6 +20,11 @@ RealNumber::RealNumber(realNumberType number) : number(number)
 }
 
 RealNumber::~RealNumber() = default;
+
+std::ostream& operator<<(std::ostream& os, const RealNumber& rn)
+{
+	return os << std::to_string(rn.number);
+}
 
 realNumberType RealNumber::getValue() const
 {

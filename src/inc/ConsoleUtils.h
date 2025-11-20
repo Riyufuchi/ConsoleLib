@@ -58,7 +58,7 @@ public:
 	}
 	static void header(std::string);
 	static void header(std::string text, IConsole& console);
-	[[deprecated("Redudant color attribute")]]
+	[[deprecated("Redundant color attribute")]]
 	static void header(std::string text, IConsole& console, Color textColor);
 	static int basicMenu(int lenght, const char* menu[]);
 	static int basicMenu(std::vector<const char*>& menu);
