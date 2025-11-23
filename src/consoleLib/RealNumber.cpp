@@ -23,7 +23,7 @@ RealNumber::~RealNumber() = default;
 
 std::ostream& operator<<(std::ostream& os, const RealNumber& rn)
 {
-	return os << std::to_string(rn.number);
+	return os << rn.number;
 }
 
 realNumberType RealNumber::getValue() const
