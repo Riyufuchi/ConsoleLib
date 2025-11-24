@@ -7,40 +7,41 @@
 // Description: ConsoleLib
 //==============================================================================
 
+#include "../src/inc/Statistic.h"
+
 #include <gtest/gtest.h>
-#include "../src/inc/StatisticsGeneric.h"
 
 using namespace ConsoleLib;
 
 const std::vector<double> testNums = {25000, 25000, 25000, 25000, 100000};
 
-TEST(StatisticsGeneric, Mean)
+TEST(Statistic, Mean)
 {
-	StatisticsGeneric<double> stat(testNums);
+	Statistic<double> stat(testNums);
 	EXPECT_EQ(stat.mean(), 40000.0);
 }
 
-TEST(StatisticsGeneric, Median)
+TEST(Statistic, Median)
 {
-	StatisticsGeneric<double> stat(testNums);
+	Statistic<double> stat(testNums);
 	EXPECT_EQ(stat.median(), 25000);
 }
 
-TEST(StatisticsGeneric, Mode)
+TEST(Statistic, Mode)
 {
-	StatisticsGeneric<double> stat(testNums);
+	Statistic<double> stat(testNums);
 	std::vector<double> modeVector = stat.mode();
 	EXPECT_EQ(modeVector[0], 25000);
 }
 
-TEST(StatisticsGeneric, VarX)
+TEST(Statistic, VarX)
 {
-	StatisticsGeneric<double> stat(testNums);
+	Statistic<double> stat(testNums);
 	EXPECT_EQ(stat.variance(false), 900000000);
 }
 
-TEST(StatisticsGeneric, StandartVarX)
+TEST(Statistic, StandartVarX)
 {
-	StatisticsGeneric<double> stat(testNums);
+	Statistic<double> stat(testNums);
 	EXPECT_EQ(stat.stadardizeVarX(stat.variance(false)), 30000);
 }

@@ -1,51 +1,51 @@
 //==============================================================================
-// File       : StatisticsGeneric.cpp
+// File       : Statistic.cpp
 // Author     : riyufuchi
 // Created on : Jan 14, 2025
-// Last edit  : Jan 14, 2025
+// Last edit  : Nov 24, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: ConsoleArt
 //==============================================================================
 
-#include "StatisticsGeneric.h"
+#include "Statistic.h"
 
 namespace ConsoleLib
 {
 template <typename T>
-StatisticsGeneric<T>::StatisticsGeneric()
+Statistic<T>::Statistic()
 {
 	this->data = std::vector<T>();
 }
 template <typename T>
-StatisticsGeneric<T>::StatisticsGeneric(const std::vector<T>& dataset) : data(dataset)
+Statistic<T>::Statistic(const std::vector<T>& dataset) : data(dataset)
 {
 }
 
 template <typename T>
-StatisticsGeneric<T>::~StatisticsGeneric()
+Statistic<T>::~Statistic()
 {
 }
 
 template <typename T>
-void StatisticsGeneric<T>::sortData()
+void Statistic<T>::sortData()
 {
 	std::sort(data.begin(), data.end());
 }
 
 template <typename T>
-void StatisticsGeneric<T>::addValue(T value)
+void Statistic<T>::addValue(T value)
 {
 	data.push_back(value);
 }
 
 template <typename T>
-void StatisticsGeneric<T>::addValues(const std::vector<T>& values)
+void Statistic<T>::addValues(const std::vector<T>& values)
 {
 	data.insert(data.end(), values.begin(), values.end());
 }
 
 template <typename T>
-T StatisticsGeneric<T>::mean()
+T Statistic<T>::mean() const
 {
 	if (data.empty())
 		return 0.0;
@@ -53,7 +53,7 @@ T StatisticsGeneric<T>::mean()
 }
 
 template <typename T>
-T StatisticsGeneric<T>::median()
+T Statistic<T>::median()
 {
 	if (data.empty())
 		return 0.0;
@@ -66,7 +66,7 @@ T StatisticsGeneric<T>::median()
 }
 
 template <typename T>
-T StatisticsGeneric<T>::variance(bool sampleVarinace)
+T Statistic<T>::variance(bool sampleVarinace) const
 {
 	if (data.size() < 2)
 		return 0.0;
@@ -80,7 +80,7 @@ T StatisticsGeneric<T>::variance(bool sampleVarinace)
 }
 
 template <typename T>
-T StatisticsGeneric<T>::varianceWelford(bool sampleVarinace)
+T Statistic<T>::varianceWelford(bool sampleVarinace) const
 {
 	if (data.size() < 2)
 		return 0.0;
@@ -103,13 +103,13 @@ T StatisticsGeneric<T>::varianceWelford(bool sampleVarinace)
 }
 
 template <typename T>
-T StatisticsGeneric<T>::stadardizeVarX(T variance2)
+T Statistic<T>::stadardizeVarX(T variance2) const
 {
 	return std::sqrt(variance2);
 }
 
 template <typename T>
-std::vector<T> StatisticsGeneric<T>::mode()
+std::vector<T> Statistic<T>::mode() const
 {
 	if (data.empty())
 		return {};
@@ -129,7 +129,7 @@ std::vector<T> StatisticsGeneric<T>::mode()
 }
 
 template <typename T>
-std::vector<std::pair<std::string, T>> StatisticsGeneric<T>::calculateStatistics(bool sampleData)
+std::vector<std::pair<std::string, T>> Statistic<T>::calculateStatistics(bool sampleData)
 {
 	std::vector<std::pair<std::string, T>> pairs;
 	pairs.push_back(std::pair<std::string, T>("Mean (E[X]): ", mean()));

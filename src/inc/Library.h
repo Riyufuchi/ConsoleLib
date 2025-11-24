@@ -14,7 +14,7 @@
 #include <string>
 #include <format>
 
-#define _VERSION "6.5"
+#define _VERSION "6.6"
 
 namespace ConsoleLib
 {
