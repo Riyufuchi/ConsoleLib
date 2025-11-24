@@ -11,7 +11,7 @@
 
 namespace ConsoleLib
 {
-PoissonsDistribution::PoissonsDistribution(int lambda) : λ(lambda)
+PoissonsDistribution::PoissonsDistribution(int lambda) : Distribution(), λ(lambda)
 {
 }
 PoissonsDistribution::~PoissonsDistribution()

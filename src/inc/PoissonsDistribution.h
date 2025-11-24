@@ -14,7 +14,7 @@
 
 namespace ConsoleLib
 {
-class PoissonsDistribution: public Disribution
+class PoissonsDistribution: public Distribution
 {
 private:
 	int λ;

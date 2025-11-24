@@ -17,13 +17,13 @@ namespace ConsoleLib
 using u_bigInt = long double; // unsigned long long; - temporary solution as precision errors might occur
 using bigDouble = long double;
 
-class Disribution
+class Distribution
 {
 protected:
 	u_bigInt resultHolder;
 public:
-	Disribution();
-	virtual ~Disribution() = default;
+	Distribution();
+	virtual ~Distribution() = default;
 	u_bigInt factorial(int number);
 	bigDouble power(bigDouble number, int power);
 	virtual bigDouble distribute(int k) = 0;

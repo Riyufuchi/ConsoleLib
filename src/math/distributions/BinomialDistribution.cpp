@@ -14,7 +14,7 @@ namespace ConsoleLib
 BinomialDistribution::BinomialDistribution() : BinomialDistribution(1, 1)
 {
 }
-BinomialDistribution::BinomialDistribution(int n, bigDouble p) : Disribution(), n(n), p(p)
+BinomialDistribution::BinomialDistribution(int n, bigDouble p) : Distribution(), n(n), p(p)
 {
 }
 BinomialDistribution::~BinomialDistribution()

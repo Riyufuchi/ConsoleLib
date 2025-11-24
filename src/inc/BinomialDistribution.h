@@ -14,7 +14,7 @@
 
 namespace ConsoleLib
 {
-class BinomialDistribution : Disribution
+class BinomialDistribution : Distribution
 {
 private:
 	int n; // n from binomial distribution formula

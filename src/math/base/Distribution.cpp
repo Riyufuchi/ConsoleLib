@@ -11,16 +11,16 @@
 
 namespace ConsoleLib
 {
-Disribution::Disribution() : resultHolder(0)
+Distribution::Distribution() : resultHolder(0)
 {}
-u_bigInt Disribution::factorial(int number)
+u_bigInt Distribution::factorial(int number)
 {
 	resultHolder = 1;
 	for (int i = 2; i <= number; i++)
 		resultHolder *= i;
 	return resultHolder;
 }
-bigDouble Disribution::power(bigDouble number, int power)
+bigDouble Distribution::power(bigDouble number, int power)
 {
 	resultHolder = 1.0L;
 	for (int i = 0; i < power; i++)
