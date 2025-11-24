@@ -9,7 +9,7 @@ BUILD_DIR = build
 LIB_DIR = lib
 
 # Source files
-SRC_FILES = $(wildcard $(SRC_DIR)/**/*.cpp)
+SRC_FILES = $(shell find $(SRC_DIR) -type f -name "*.cpp")
 
 # Object files
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
