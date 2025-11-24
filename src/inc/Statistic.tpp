@@ -132,14 +132,14 @@ template <typename T>
 std::vector<std::pair<std::string, T>> Statistic<T>::calculateStatistics(bool sampleData)
 {
 	std::vector<std::pair<std::string, T>> pairs;
-	pairs.push_back(std::pair<std::string, T>("Mean (E[X]): ", mean()));
-	pairs.push_back(std::pair<std::string, T>("Median: ", median()));
-	pairs.push_back(std::pair<std::string, T>("Standard variance: ", stadardizeVarX(variance(sampleData))));
-	pairs.push_back(std::pair<std::string, T>("Standard variance (Welford): ", stadardizeVarX(varianceWelford(sampleData))));
+	pairs.push_back(std::pair<std::string, T>("Mean (E[X]):", mean()));
+	pairs.push_back(std::pair<std::string, T>("Median:", median()));
+	pairs.push_back(std::pair<std::string, T>("Standard variance:", stadardizeVarX(variance(sampleData))));
+	pairs.push_back(std::pair<std::string, T>("Standard variance (Welford):", stadardizeVarX(varianceWelford(sampleData))));
 	auto modes = mode();
 	if (!modes.empty())
 		for (size_t i = 0; i < modes.size(); i++)
-			pairs.push_back(std::pair<std::string, T>("Mode: ",  modes[i]));
+			pairs.push_back(std::pair<std::string, T>("Mode:",  modes[i]));
 	return pairs;
 }
 

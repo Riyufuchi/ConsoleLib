@@ -25,7 +25,7 @@ public:
 	~BinomialDistribution();
 	u_bigInt partialFactorial(int number, int steps);
 	u_bigInt combinationNumber(int n, int k);
-	bigDouble distribute(int k) override;
+	bigDouble distribute(int k) override; // Not normalized to %
 	bigDouble distribute(int k, bigDouble p, int n);
 	// Overrides
 	bigDouble ex() override;
