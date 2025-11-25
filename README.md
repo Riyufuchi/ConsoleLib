@@ -16,13 +16,26 @@ Library for easier working with console/terminal and other stuff as well. I made
 
 ## Compilation
 
+### Using makefile
+
    ```bash
    git clone https://github.com/Riyufuchi/ConsoleLib.git
    cd ConsoleLib
    make
    ```
 
+### Using CMake
+
+   ```bash
+   git clone https://github.com/Riyufuchi/ConsoleLib.git
+   cd ConsoleLib
+   cmake -B build -S .
+   cmake --build build
+   ```
+
 ## Testing
+
+### On Linux
 
 For testing Google Test framework is used
 
