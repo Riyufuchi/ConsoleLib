@@ -35,7 +35,7 @@ Library for easier working with console/terminal and other stuff as well. I made
 
 ## Testing
 
-### On Linux
+### Using makefile
 
 For testing Google Test framework is used
 

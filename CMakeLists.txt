@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(MyApp LANGUAGES C CXX)
+project(ConsoleLib LANGUAGES C CXX)
 
 # C++ version
 set(CMAKE_CXX_STANDARD 20)
