@@ -35,16 +35,23 @@ bool ConsoleUtils::repeat()
 int ConsoleUtils::getIntSafe()
 {
 	int x = 0;
-	while(true)
+	while (true)
 	{
 		std::cin >> x;
 		std::cin.get();
 		if (!std::cin.fail())
 			break;
+		if (std::cin.eof()) // If no input available (e.g. started by double-click)
+		{
+			std::cerr << "No input available. Exiting safely.\n";
+			throw new std::exception();
+		}
 		std::cerr << "Bad input, enter a number: ";
 		std::cin.clear();
-		std::cin.ignore(10,'\n');
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
+	// Clean leftover characters after the integer
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return x;
 }
 
@@ -61,7 +68,7 @@ int ConsoleUtils::getIntSafe(int min, int max)
 	}
 }
 
-void ConsoleUtils::header(std::string text)
+void ConsoleUtils::header(const std::string& text)
 {
 	std::string line = "";
 	int lenght = static_cast<int>(text.size());
@@ -72,13 +79,13 @@ void ConsoleUtils::header(std::string text)
 	std::cout << line << "\n" << text << "\n" << line << std::endl;
 }
 
-void ConsoleUtils::header(std::string text, IConsole& console)
+void ConsoleUtils::header(const std::string& text, IConsole& console)
 {
 	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
 	console.out(line + text + "\n" + line);
 }
 
-void ConsoleUtils::header(std::string text, IConsole& console, Color textColor)
+void ConsoleUtils::header(const std::string& text, IConsole& console, const Color& textColor)
 {
 	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
 	console.enableCustomFG(textColor);
@@ -116,14 +123,15 @@ int ConsoleUtils::basicMenu(std::vector<std::string>& menu, IConsole& console)
 	return getIntSafe(1, index - 1) - 1;
 }
 
-void ConsoleUtils::listFilesInFolder(std::string workspacePath)
+void ConsoleUtils::listFilesInFolder(const std::string& workspacePath)
 {
 	std::cout << "\n";
-	if (workspacePath == "")
-		workspacePath = std::filesystem::current_path().generic_string();
+	std::filesystem::directory_iterator iterator(std::filesystem::current_path().generic_string());
+	if (!workspacePath.empty())
+		iterator = std::filesystem::directory_iterator(workspacePath);
 	try
 	{
-		for (const auto& entry : std::filesystem::directory_iterator(workspacePath))
+		for (const auto& entry : iterator)
 		{
 			std::cout << entry.path().filename() << "\n";
 		}
