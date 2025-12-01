@@ -36,7 +36,7 @@ bool ScriptMap::loadScripts(const std::string& path)
 			std::ifstream infile(entry.path());
 			if (infile)
 			{
-				scripts[entry.path().filename()] = std::string((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
+				scripts[entry.path().filename().generic_string()] = std::string((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
 			}
 			else
 			{

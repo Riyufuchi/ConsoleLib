@@ -2,7 +2,7 @@
 // File       : PoissonsDistribution.cpp
 // Author     : riyufuchi
 // Created on : Nov 01, 2024
-// Last edit  : Nov 20, 2025
+// Last edit  : Dec 02, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: ConsoleArt
 //==============================================================================
@@ -11,7 +11,7 @@
 
 namespace consolelib
 {
-PoissonsDistribution::PoissonsDistribution(int lambda) : Distribution(), λ(lambda)
+PoissonsDistribution::PoissonsDistribution(int lambda) : Distribution(), lambda(lambda)
 {
 }
 PoissonsDistribution::~PoissonsDistribution()
@@ -19,14 +19,14 @@ PoissonsDistribution::~PoissonsDistribution()
 }
 bigDouble PoissonsDistribution::distribute(int k)
 {
-	return (pow(λ, k)*pow(M_E, -1*λ))/factorial(k);
+	return (pow(lambda, k)* std::exp(-lambda))/factorial(k);
 }
 bigDouble PoissonsDistribution::ex()
 {
-	return λ;
+	return lambda;
 }
 bigDouble PoissonsDistribution::varX()
 {
-	return λ;
+	return lambda;
 }
 } /* namespace Other */

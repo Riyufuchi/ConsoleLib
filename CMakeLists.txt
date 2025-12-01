@@ -14,11 +14,17 @@ endif()
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 	add_compile_options(-Wall -Wextra -pedantic)
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	add_compile_definitions(NOMINMAX)
 	add_compile_options(/W4)
 endif()
 
 # Optimization
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+	set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+	set(CMAKE_CXX_FLAGS_RELEASE "/O2")
+endif()
+
 
 # Library itself
 file(MAKE_DIRECTORY build)

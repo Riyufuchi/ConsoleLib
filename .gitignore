@@ -10,6 +10,16 @@ bin
 .clangd
 .clang-format
 
+# Visual studio
+.vs
+x64
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.aps
+*.rc
+
 # Prerequisites
 *.d
 
