@@ -4,14 +4,14 @@
 // Created on : Nov 24, 2025
 // Last edit  : Nov 24, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../src/inc/Statistic.h"
 
 #include <gtest/gtest.h>
 
-using namespace ConsoleLib;
+using namespace consolelib;
 
 const std::vector<double> testNums = {25000, 25000, 25000, 25000, 100000};
 

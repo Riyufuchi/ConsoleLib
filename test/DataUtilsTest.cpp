@@ -4,13 +4,13 @@
 // Created on : Mar 10, 2025
 // Last edit  : Mar 10, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include <gtest/gtest.h>
 #include "../src/inc/DataUtils.h"
 
-using namespace ConsoleLib;
+using namespace consolelib;
 
 TEST(DataUtilsTest, IsNumber)
 {

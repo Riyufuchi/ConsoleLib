@@ -9,7 +9,7 @@
 
 #include "../../inc/Distribution.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 Distribution::Distribution() : resultHolder(0)
 {}

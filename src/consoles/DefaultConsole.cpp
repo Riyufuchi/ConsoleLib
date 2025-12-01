@@ -8,7 +8,7 @@
 
 #include "../inc/DefaultConsole.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 DefaultConsole::DefaultConsole()
 {

@@ -4,12 +4,12 @@
 // Created on : Mar 15, 2025
 // Last edit  : Apr 24, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../inc/ConsoleMenu.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 
 ConsoleMenu::ConsoleMenu(IConsole& console, std::vector<std::string>& menu, std::function<void()> printHeader) : console(console), menu(menu), printHeader(printHeader), runMenu(true), highlightedOptionID(0), key(' ')

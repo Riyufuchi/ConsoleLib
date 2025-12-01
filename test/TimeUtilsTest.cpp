@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "../src/inc/TimeUtils.h"
 
-using namespace ConsoleLib;
+using namespace consolelib;
 
 TEST(TimeUtilsTest, ConvertMillis)
 {

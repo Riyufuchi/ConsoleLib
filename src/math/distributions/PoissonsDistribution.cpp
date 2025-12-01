@@ -9,7 +9,7 @@
 
 #include "../../inc/PoissonsDistribution.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 PoissonsDistribution::PoissonsDistribution(int lambda) : Distribution(), λ(lambda)
 {

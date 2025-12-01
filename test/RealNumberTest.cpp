@@ -2,7 +2,7 @@
 #include "../src/inc/RealNumber.h"
 #include <string>
 
-using namespace ConsoleLib;
+using namespace consolelib;
 
 TEST(RealNumberTest, BasicAssignment)
 {

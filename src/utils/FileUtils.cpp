@@ -4,12 +4,12 @@
 // Created on : Nov 28, 2025
 // Last edit  : Nov 28, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../inc/FileUtils.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 
 std::vector<std::string> FileUtils::splitCSV(const std::string& line, char delimeter, size_t expectedCount)
@@ -40,4 +40,4 @@ std::vector<std::string> FileUtils::splitCSV(const std::string& line, char delim
 	return result;
 }
 
-} /* namespace ConsoleLib */
+} /* namespace consolelib */

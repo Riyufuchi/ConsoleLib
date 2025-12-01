@@ -8,7 +8,7 @@
 #ifdef _WIN32
 #include "../inc/WindowsConsole.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 	WindowsConsole::WindowsConsole() : UnixConsole()
 	{

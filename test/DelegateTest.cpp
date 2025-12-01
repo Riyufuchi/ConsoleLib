@@ -4,14 +4,14 @@
 // Created on : Nov 23, 2025
 // Last edit  : Nov 23, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include <gtest/gtest.h>
 #include <cmath>
 #include "../src/inc/Delegate.hpp"
 
-using namespace ConsoleLib;
+using namespace consolelib;
 
 double root(double x)
 {

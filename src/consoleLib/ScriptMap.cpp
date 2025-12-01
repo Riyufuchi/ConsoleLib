@@ -2,14 +2,14 @@
 // File       : ScriptMap.cpp
 // Author     : riyufuchi
 // Created on : Mar 28, 2025
-// Last edit  : Mar 28, 2025
+// Last edit  : Nov 30, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../inc/ScriptMap.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 
 ScriptMap::ScriptMap()
@@ -58,11 +58,11 @@ bool ScriptMap::loadScripts(std::string path)
 	return true;
 }
 
-std::string ScriptMap::getScript(const std::string& scriptname) const
+const std::string& ScriptMap::getScript(const std::string& scriptname) const
 {
 	if (scripts.contains(scriptname))
 		return scripts.find(scriptname)->second;
-	return "";
+	return scriptname;
 }
 
 std::unordered_map<std::string, std::string>& ScriptMap::getScriptMap()

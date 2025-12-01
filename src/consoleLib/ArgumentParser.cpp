@@ -4,12 +4,12 @@
 // Created on : Apr 6, 2025
 // Last edit  : Apr 6, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../inc/ArgumentParser.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 
 void ArgumentParser::printArgumentPairs(const argMap& argPairs)
@@ -156,4 +156,4 @@ argVector ArgumentParser::analyzeInOrder(int argc, char** argv, bool& success, s
 	return arguments;
 }
 
-} /* namespace ConsoleLib */
+} /* namespace consolelib */

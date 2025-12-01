@@ -6,7 +6,7 @@
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
-namespace ConsoleLib
+namespace consolelib
 {
 ConsoleUtils::ConsoleUtils()
 {
@@ -57,15 +57,44 @@ int ConsoleUtils::getIntSafe()
 
 int ConsoleUtils::getIntSafe(int min, int max)
 {
-	int x = 0;
-	while(true)
+	int x;
+
+	do
 	{
+		std::cout << "Enter a number in range " << min << " - " << max << ": ";
 		x = getIntSafe();
-		if(x >= min && x <= max)
-			return x;
-		else
-			std::cout << "Enter a number in range " << min << " - " << max << ": ";
+	} while (not(x >= min && x <= max));
+
+	return x;
+}
+
+std::optional<int> ConsoleUtils::obtainInt()
+{
+	int x;
+	std::cin >> x;
+
+	if (!std::cin.fail())
+	{
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return x;
 	}
+
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return std::nullopt;
+}
+
+
+std::optional<int> ConsoleUtils::obtainInt(int min, int max)
+{
+	std::optional<int>  x;
+
+	do
+	{
+		x = obtainInt();
+	} while (x and not(x >= min && x <= max));
+
+	return x;
 }
 
 void ConsoleUtils::header(const std::string& text)

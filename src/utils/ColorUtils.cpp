@@ -6,7 +6,7 @@
 //============================================================================
 #include "../inc/ColorUtils.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 ColorUtils::ColorUtils()
 {
@@ -44,4 +44,4 @@ Color ColorUtils::getColor(ColorPallete color)
 		default: return Color{5, 195, 221};
 	}
 }
-} /* namespace ConsoleLib */
+} /* namespace consolelib */

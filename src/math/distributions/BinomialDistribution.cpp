@@ -9,7 +9,7 @@
 
 #include "../../inc/BinomialDistribution.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 BinomialDistribution::BinomialDistribution() : BinomialDistribution(1, 1)
 {

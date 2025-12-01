@@ -9,7 +9,7 @@
 
 #include "../inc/TimeUtils.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 TimeUtils::TimeUtils()
 {

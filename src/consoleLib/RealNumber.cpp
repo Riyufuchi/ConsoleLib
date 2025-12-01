@@ -4,12 +4,12 @@
 // Created on : Jun 16, 2025
 // Last edit  : Nov 20, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../inc/RealNumber.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 
 RealNumber::RealNumber() : RealNumber(0)

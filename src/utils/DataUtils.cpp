@@ -4,12 +4,12 @@
 // Created on : Mar 8, 2024
 // Last edit  : Jan 29, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
-// Description: ConsoleLib
+// Description: consolelib
 //==============================================================================
 
 #include "../inc/DataUtils.h"
 
-namespace ConsoleLib
+namespace consolelib
 {
 DataUtils::DataUtils()
 {}
