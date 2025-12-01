@@ -20,14 +20,14 @@ ScriptMap::~ScriptMap()
 {
 }
 
-bool ScriptMap::loadScripts(std::string path)
+bool ScriptMap::loadScripts(const std::string& path)
 {
-	if (path == "")
-		path = std::filesystem::current_path().generic_string();
-
+	std::filesystem::directory_iterator iterator(std::filesystem::current_path().generic_string());
+	if (!path.empty())
+		iterator = std::filesystem::directory_iterator(path);
 	try
 	{
-		for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(path))
+		for (const std::filesystem::directory_entry& entry : iterator)
 		{
 			// Skip if not a regular file (e.g., directory, symlink, device, etc.)
 			if (!entry.is_regular_file())
@@ -46,8 +46,8 @@ bool ScriptMap::loadScripts(std::string path)
 	}
 	catch (const std::filesystem::filesystem_error& e)
 	{
-			std::cerr << "Filesystem error: " << e.what() << "\n";
-			return false;
+		std::cerr << "Filesystem error: " << e.what() << "\n";
+		return false;
 	}
 	catch (const std::exception& e)
 	{
