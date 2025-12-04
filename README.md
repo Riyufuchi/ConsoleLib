@@ -16,6 +16,13 @@ Library for easier working with console/terminal and other stuff as well. I made
 
 ## Compilation
 
+### Compiled & Tested on
+
+| OS | Compiler |
+| :------: | :----------: |
+| Ubuntu | g++ 15.2.0 |
+| Windows 10 | MSVC 19.50.35719.0 |
+
 ### Using makefile
 
    ```bash
