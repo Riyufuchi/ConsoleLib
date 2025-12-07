@@ -4,7 +4,7 @@
 // Created on : Nov 01, 2024
 // Last edit  : Dec 02, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
-// Description: ConsoleArt
+// Description: consoleart
 //==============================================================================
 
 #include "../../inc/PoissonsDistribution.h"

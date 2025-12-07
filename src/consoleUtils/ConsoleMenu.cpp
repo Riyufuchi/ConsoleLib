@@ -128,4 +128,4 @@ void ConsoleMenu::clearConsole()
 	#endif
 }
 
-} /* namespace ConsoleArt */
+} /* namespace consoleart */

@@ -4,7 +4,7 @@
 // Created on : Mar 26, 2024
 // Last edit  : May 07, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
-// Description: ConsoleArt
+// Description: consoleart
 //==============================================================================
 
 #include "../inc/TimeUtils.h"
@@ -55,4 +55,4 @@ std::string TimeUtils::dateToString(const Date& date)
 }
 
 
-} /* namespace ConsoleArt */
+} /* namespace consoleart */

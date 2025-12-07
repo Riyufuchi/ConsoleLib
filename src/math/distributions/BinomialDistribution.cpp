@@ -4,7 +4,7 @@
 // Created on : Oct 22, 2024
 // Last edit  : Nov 20, 2025
 // Copyright  : Copyright (c) 2024, riyufuchi
-// Description: ConsoleArt
+// Description: consoleart
 //==============================================================================
 
 #include "../../inc/BinomialDistribution.h"
@@ -70,4 +70,4 @@ int BinomialDistribution::getN() const
 {
 	return n;
 }
-} /* namespace ConsoleArt */
+} /* namespace consoleart */
