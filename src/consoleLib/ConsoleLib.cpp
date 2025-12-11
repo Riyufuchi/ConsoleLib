@@ -1,5 +1,5 @@
 //==============================================================================
-// File       : Library.cpp
+// File       : ConsoleLib.cpp
 // Author     : riyufuchi
 // Created on : Mar 27, 2024
 // Last edit  : Feb 24, 2025
@@ -7,19 +7,19 @@
 // Description: consolelib
 //==============================================================================
 
-#include "../inc/Library.h"
+#include "../inc/ConsoleLib.h"
 
 #define _COPYRIGHT_HEADER "Riyufuchi (c) 2023 - 2025"
 
 namespace consolelib
 {
-Library::Library()
+ConsoleLib::ConsoleLib()
 {
 }
-Library::~Library()
+ConsoleLib::~ConsoleLib()
 {
 }
-std::string Library::aboutLibrary()
+std::string ConsoleLib::aboutLibrary()
 {
 	return std::format("ConsoleLib {}\n{}\nCompiled on: {} {}\nC++ version: {}", _VERSION, _COPYRIGHT_HEADER, __DATE__, __TIME__, __cplusplus);
 }
