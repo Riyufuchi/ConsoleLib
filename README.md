@@ -23,21 +23,19 @@ Library for easier working with console/terminal and other stuff as well. I made
 | Ubuntu | g++ 15.2.0 |
 | Windows 10 | MSVC 19.50.35719.0 |
 
-### Using makefile
+### CMake
 
    ```bash
    git clone https://github.com/Riyufuchi/ConsoleLib.git
    cd ConsoleLib
-   make
-   ```
-
-### Using CMake
-
-   ```bash
-   git clone https://github.com/Riyufuchi/ConsoleLib.git
-   cd ConsoleLib
-   cmake -B build -S .
-   cmake --build build --confing Release
+   
+   # CMake for Linux, macOS, MinGW, Ninja (single-config)
+   cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
+   cmake --build build
+   
+   # CMake for Visual Studio, Xcode, Ninja Multi-Config
+   cmake -S . -B build
+   cmake --build build --config Release
    ```
 
 ## Testing
