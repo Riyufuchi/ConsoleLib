@@ -2,10 +2,11 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Nov 09, 2025
+// Last Edit   : Dec 16, 2025
 //============================================================================
 
 #include "../inc/ConsoleUtils.h"
+
 namespace consolelib
 {
 ConsoleUtils::ConsoleUtils()
@@ -37,9 +38,7 @@ int ConsoleUtils::getIntSafe()
 	int x = 0;
 	while (true)
 	{
-		std::cin >> x;
-		std::cin.get();
-		if (!std::cin.fail())
+		if (std::cin >> x)
 			break;
 		if (std::cin.eof()) // If no input available (e.g. started by double-click)
 		{
@@ -75,6 +74,7 @@ std::optional<int> ConsoleUtils::obtainInt()
 
 	if (!std::cin.fail())
 	{
+		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return x;
 	}
