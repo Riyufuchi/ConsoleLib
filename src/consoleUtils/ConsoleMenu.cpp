@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.cpp
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Apr 24, 2025
+// Last edit  : Dec 18, 2025
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: consolelib
 //==============================================================================
@@ -29,6 +29,51 @@ void ConsoleMenu::flushInputBuffer()
 #endif
 }
 
+#ifdef _WIN32
+ConsoleMenu::KeyType ConsoleMenu::obtainKeyType()
+{
+	key = getch();
+
+	if (key == 0 || key == 224)
+	{
+		key = getch();
+		switch (key)
+		{
+		case 72: return KeyType::ARROW_UP;
+		case 80: return KeyType::ARROW_DOWN;
+		}
+	}
+	else if (key == 13)
+	{
+		return KeyType::ENTER;
+	}
+	return KeyType::UNKNOWN;
+}
+#else
+ConsoleMenu::KeyType ConsoleMenu::obtainKeyType()
+{
+	key = getch();
+	if (key == 27) // Escape sequence starts with ESC (27)
+	{
+		key = getch();
+		if (key == '[') // Confirm it's a special key sequence
+		{
+			key = getch(); // Get the final character
+			switch (key)
+			{
+			case 'A': return KeyType::ARROW_UP;
+			case 'B': return KeyType::ARROW_DOWN;
+			}
+		}
+	}
+	else if (key == '\n')
+	{
+		return KeyType::ENTER;
+	}
+	return KeyType::UNKNOWN;
+}
+#endif
+
 int ConsoleMenu::runMenuLoop()
 {
 	runMenu = true; // loop must runs every time this function is called
@@ -43,23 +88,12 @@ int ConsoleMenu::runMenuLoop()
 		clearConsole();
 		printHeader();
 		printMenu();
-		key = getch();
-		if (key == 27) // Escape sequence starts with ESC (27)
+		switch (obtainKeyType())
 		{
-			key = getch();
-			if (key == '[') // Confirm it's a special key sequence
-			{
-				key = getch(); // Get the final character
-				switch (key)
-				{
-					case 'A': highlightedOptionID = (highlightedOptionID + menu.size() - 1) % menu.size(); break; // Up Arrow
-					case 'B': highlightedOptionID = (highlightedOptionID + 1) % menu.size(); break; // Down Arrow
-				}
-			}
-		}
-		else if (key == '\n')
-		{
-			runMenu = false;
+			case KeyType::ARROW_UP: highlightedOptionID = (highlightedOptionID + menu.size() - 1) % menu.size(); break; // Up Arrow
+			case KeyType::ARROW_DOWN: highlightedOptionID = (highlightedOptionID + 1) % menu.size(); break; // Down Arrow
+			case KeyType::ENTER: runMenu = false; break;
+			default: break;
 		}
 	}
 	enableLineBuffering();
