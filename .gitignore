@@ -4,6 +4,9 @@ Release
 build
 bin
 
+# QtCreator
+*.user
+
 # IDE files
 .cproject
 .settings
