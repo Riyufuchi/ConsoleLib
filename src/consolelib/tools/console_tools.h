@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Dec 22, 2025
+// Last Edit   : Dec 23, 2025
 //============================================================================
 
 #ifndef _CONSOLE_UTILITY_H_
@@ -48,8 +48,6 @@ namespace consolelib::console_tools
 	}
 	void header(const std::string& text);
 	void header(const std::string& text, IConsole& console);
-	[[deprecated("Redundant color attribute")]]
-	void header(const std::string& text, IConsole& console, const Color& textColor);
 	int basicMenu(int lenght, const char* menu[]);
 	int basicMenu(std::vector<const char*>& menu);
 	int basicMenu(std::vector<std::string>& menu, IConsole& console);

@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Dec 22, 2025
+// Last Edit   : Dec 23, 2025
 //============================================================================
 
 #include "../consolelib/tools/console_tools.h"
@@ -107,14 +107,6 @@ void header(const std::string& text, IConsole& console)
 {
 	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
 	console.out(line + text + "\n" + line);
-}
-
-void header(const std::string& text, IConsole& console, const Color& textColor)
-{
-	std::string line = std::string(static_cast<int>(text.size()), '-').append("\n");
-	console.enableCustomFG(textColor);
-	console.out(line + text + "\n" + line);
-	console.disableCustomFG();
 }
 
 int basicMenu(int lenght, const char* menu[])

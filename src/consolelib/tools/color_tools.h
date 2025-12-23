@@ -2,7 +2,7 @@
 // Name        : ColorUtils
 // Author      : Riyufuchi
 // Created on  : Nov 20, 2021
-// Last Edit   : Sep 28, 2025
+// Last Edit   : Dec 23, 2025
 //============================================================================
 
 #ifndef SRC_INC_COLOR_UTILS_H_
@@ -39,7 +39,7 @@ enum ColorPallete
 
 namespace consolelib::color_tools
 {
-inline constexpr const char* colorPaletteNames[] =
+inline constexpr const char* color_palette_names[] =
 {
 	"HAUNTED",
 	"UNIQUE",
@@ -57,8 +57,8 @@ inline constexpr const char* colorPaletteNames[] =
 	"AMBER",
 	"TERMINAL_FG"
 };
+[[deprecated("For backwards compatibility only - use newer obtainColor(ColorPallete)")]]
 Color getColor(ColorPallete color);
-[[deprecated("For backwards compatibility only")]]
-Color newColor(short int r, short int g, short int b);
+Color obtainColor(ColorPallete color);
 }
 #endif /* SRC_INC_COLOR_UTILS_H_ */
