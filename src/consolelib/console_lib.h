@@ -15,7 +15,7 @@
 #include <format>
 
 #define _VERSION "7.1"
-#define _COPYRIGHT_HEADER "Riyufuchi (c) 2023 - 2025"
+#define _COPYRIGHT_HEADER "Riyufuchi (c) 2023 - 2026"
 
 namespace consolelib
 {
