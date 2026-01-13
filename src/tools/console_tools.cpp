@@ -2,7 +2,7 @@
 // Name        : ConsoleUtility
 // Author      : Riyufuchi
 // Created on  : Oct 27, 2021
-// Last Edit   : Dec 23, 2025
+// Last Edit   : Jan 13, 2026
 //============================================================================
 
 #include "../consolelib/tools/console_tools.h"
@@ -10,25 +10,25 @@
 namespace consolelib::console_tools
 {
 
-bool waitForEnter()
+bool wait_for_enter()
 {
 	std::string choice;
 	getline(std::cin, choice);
 	//std::cin.ignore(); //clears buffer
 	return (choice == "" || choice == "y" || choice == "Y");
 }
-bool yesNo(const char* text)
+bool yes_no(const char* text)
 {
 	std::cout << text;
-	return waitForEnter();
+	return wait_for_enter();
 }
 
 bool repeat()
 {
-	return yesNo("Again? [Y/n] ");
+	return yes_no("Again? [Y/n] ");
 }
 
-int getIntSafe()
+int get_int_safe()
 {
 	int x = 0;
 	while (true)
@@ -49,20 +49,20 @@ int getIntSafe()
 	return x;
 }
 
-int getIntSafe(int min, int max)
+int get_int_safe(int min, int max)
 {
 	int x;
 
 	do
 	{
 		std::cout << "Enter a number in range " << min << " - " << max << ": ";
-		x = getIntSafe();
+		x = get_int_safe();
 	} while (not(x >= min && x <= max));
 
 	return x;
 }
 
-std::optional<int> obtainInt()
+std::optional<int> obtain_int()
 {
 	int x;
 	std::cin >> x;
@@ -80,13 +80,13 @@ std::optional<int> obtainInt()
 }
 
 
-std::optional<int> obtainInt(int min, int max)
+std::optional<int> obtain_int(int min, int max)
 {
 	std::optional<int>  x;
 
 	do
 	{
-		x = obtainInt();
+		x = obtain_int();
 	} while (x and not(x >= min && x <= max));
 
 	return x;
@@ -115,7 +115,7 @@ int basicMenu(int lenght, const char* menu[])
 	{
 		printf("%d. %s \n", i + 1, menu[i]);
 	}
-	return getIntSafe(1, lenght) - 1;
+	return get_int_safe(1, lenght) - 1;
 }
 
 int basicMenu(std::vector<const char*>& menu)
@@ -125,7 +125,7 @@ int basicMenu(std::vector<const char*>& menu)
 	{
 		printf("%d. %s \n", i + 1, menu[i]);
 	}
-	return getIntSafe(1, LENGHT) - 1;
+	return get_int_safe(1, LENGHT) - 1;
 }
 
 int basicMenu(std::vector<std::string>& menu, IConsole& console)
@@ -136,7 +136,7 @@ int basicMenu(std::vector<std::string>& menu, IConsole& console)
 		console.out(std::format("{}. {}\n", index, text));
 		index++;
 	}
-	return getIntSafe(1, index - 1) - 1;
+	return get_int_safe(1, index - 1) - 1;
 }
 
 void listFilesInFolder(const std::string& workspacePath)
@@ -159,7 +159,7 @@ void listFilesInFolder(const std::string& workspacePath)
 	std::cout << "\n";
 }
 //args[x] = "arg| action";
-void createManual(std::string* args, int lenght)
+void create_manual(std::string* args, int lenght)
 {
 	int lineLenght = 1;
 	int lineLengthTemp = 0;
@@ -191,7 +191,7 @@ void createManual(std::string* args, int lenght)
 	}
 	std::cout << line << "\n";
 }
-std::string createTable(std::string* args, int lenght)
+std::string create_table(std::string* args, int lenght)
 {
 	std::stringstream tableStringStream;
 	int lineLenght = 1;
@@ -226,7 +226,7 @@ std::string createTable(std::string* args, int lenght)
 	return tableStringStream.str();
 }
 
-IConsole* createPlatformConsole()
+IConsole* new_platform_console()
 {
 	#if defined(__linux__) || defined(__APPLE__)
 		return new UnixConsole();

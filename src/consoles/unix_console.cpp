@@ -2,7 +2,7 @@
 // Name        : UnixConsole
 // Author      : Riyufuchi
 // Created on  : Jul 20, 2020
-// Last Edit   : Dec 22, 2025
+// Last Edit   : Jan 13, 2026
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -12,36 +12,36 @@ namespace consolelib
 {
 UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})
 {
-	setDefaultTextColor(defaultColor);
+	set_default_fg_color(defaultColor);
 }
-void UnixConsole::disableCustomBG() const
+void UnixConsole::disable_custom_bg() const
 {
 	std::cout << RESET;
 }
-void UnixConsole::enableCustomBG(const Color& color) const
+void UnixConsole::enable_custom_bg(const Color& color) const
 {
 	std::cout << "\x1B[48;2;" << color.red << ";" << color.green << ";" << color.blue << "m";
 }
-void UnixConsole::disableCustomFG() const
+void UnixConsole::disable_custom_fg() const
 {
 	std::cout << "\x1B[m";
 }
-void UnixConsole::enableCustomFG() const
+void UnixConsole::enable_custom_fg() const
 {
 	std::cout << defColorEscCode;
 }
-void UnixConsole::enableCustomFG(const Color& color) const
+void UnixConsole::enable_custom_fg(const Color& color) const
 {
 	std::cout << "\x1B[38;2;" << color.red << ";" << color.green << ";" << color.blue << "m";
 }
-void UnixConsole::setDefaultTextColor(Color color)
+void UnixConsole::set_default_fg_color(Color color)
 {
 	defaultColor = color;
 	std::ostringstream t;
 	t << "\x1B[38;2;" << defaultColor.red << ";" << defaultColor.green << ";" << defaultColor.blue << "m";
 	defColorEscCode = t.str();
 }
-Color UnixConsole::getDefaultTextColor() const
+Color UnixConsole::get_default_fg_color() const
 {
 	return defaultColor;
 }
@@ -49,7 +49,7 @@ void UnixConsole::out(const std::string& text) const
 {
 	std::cout << defColorEscCode << text << "\x1B[m";
 }
-void UnixConsole::outHighlighted(const std::string& text) const
+void UnixConsole::out_highlighted(const std::string& text) const
 {
 	std::cout << HIGHLIGHT << defColorEscCode << text << RESET;
 

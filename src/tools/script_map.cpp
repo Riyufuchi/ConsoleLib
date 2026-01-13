@@ -2,7 +2,7 @@
 // File       : ScriptMap.cpp
 // Author     : riyufuchi
 // Created on : Mar 28, 2025
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: consolelib
 //==============================================================================
@@ -20,7 +20,7 @@ ScriptMap::~ScriptMap()
 {
 }
 
-bool ScriptMap::loadScripts(const std::string& path)
+bool ScriptMap::load_scripts(const std::string& path)
 {
 	std::filesystem::path base(path.empty() ? std::filesystem::current_path() : std::filesystem::absolute(path));
 	try
@@ -56,7 +56,7 @@ bool ScriptMap::loadScripts(const std::string& path)
 	return true;
 }
 
-bool ScriptMap::loadScriptsRecursive(const std::string& path)
+bool ScriptMap::load_scripts_recursive(const std::string& path)
 {
 	std::filesystem::path base(path.empty() ? std::filesystem::current_path() : std::filesystem::absolute(path));
 	try
@@ -88,14 +88,14 @@ bool ScriptMap::loadScriptsRecursive(const std::string& path)
 }
 
 
-const std::string& ScriptMap::getScript(const std::string& scriptname) const
+const std::string& ScriptMap::get_script(const std::string& scriptname) const
 {
 	if (scripts.contains(scriptname))
 		return scripts.find(scriptname)->second;
 	return scriptname;
 }
 
-std::unordered_map<std::string, std::string>& ScriptMap::getScriptMap()
+std::unordered_map<std::string, std::string>& ScriptMap::get_script_map()
 {
 	return scripts;
 }

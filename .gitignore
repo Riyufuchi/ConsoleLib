@@ -55,3 +55,4 @@ x64
 *.exe
 *.out
 *.app
+/CMakeLists.txt.user.bGQPYO

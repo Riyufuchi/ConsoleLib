@@ -2,7 +2,7 @@
 // File       : BinomDistribution.cpp
 // Author     : riyufuchi
 // Created on : Oct 22, 2024
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: consoleart
 //==============================================================================
@@ -20,28 +20,28 @@ BinomialDistribution::BinomialDistribution(int n, bigDouble p) : Distribution(),
 BinomialDistribution::~BinomialDistribution()
 {
 }
-u_bigInt BinomialDistribution::partialFactorial(int number, int steps)
+u_bigInt BinomialDistribution::partial_factorial(int number, int steps)
 {
 	resultHolder = 1;
 	for (int i = number; i > steps; i--)
 		resultHolder *= i; // Multiply from 'number' down to 'steps + 1'
 	return resultHolder;
 }
-u_bigInt BinomialDistribution::combinationNumber(int n, int k)
+u_bigInt BinomialDistribution::combination_number(int n, int k)
 {
 	if (k == 0 || k == n)
 		return 1;
 	if (k == 1)
 		return n;
-	return partialFactorial(n, n - k) / factorial(k);
+	return partial_factorial(n, n - k) / factorial(k);
 }
 bigDouble BinomialDistribution::distribute(int k)
 {
-	return combinationNumber(n, k) * pow(p, k) * pow((1.0L - p), (n - k));
+	return combination_number(n, k) * pow(p, k) * pow((1.0L - p), (n - k));
 }
 bigDouble BinomialDistribution::distribute(int k, bigDouble p, int n)
 {
-	return combinationNumber(n, k) * pow(p, k) * pow((1.0L - p), (n - k));
+	return combination_number(n, k) * pow(p, k) * pow((1.0L - p), (n - k));
 }
 // Overrides
 bigDouble BinomialDistribution::ex()
@@ -53,20 +53,20 @@ bigDouble BinomialDistribution::varX()
 	return n*p*(1 - p);
 }
 // Setters
-void BinomialDistribution::setP(bigDouble p)
+void BinomialDistribution::set_P(bigDouble p)
 {
 	this->p = p;
 }
-void BinomialDistribution::setN(int n)
+void BinomialDistribution::set_N(int n)
 {
 	this->n = n;
 }
 // Getters
-bigDouble BinomialDistribution::getP() const
+bigDouble BinomialDistribution::get_P() const
 {
 	return p;
 }
-int BinomialDistribution::getN() const
+int BinomialDistribution::get_N() const
 {
 	return n;
 }

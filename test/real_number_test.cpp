@@ -7,7 +7,7 @@ using namespace consolelib;
 TEST(RealNumberTest, BasicAssignment)
 {
 	RealNumber x = 5.5;
-	EXPECT_EQ(x.getValue(), 5.5);
+	EXPECT_EQ(x.get_value(), 5.5);
 }
 
 TEST(RealNumberTest, BasicAssignment_Operator)
@@ -118,10 +118,10 @@ TEST(RealNumberTest, Operator_binary_minus)
 TEST(RealNumberTest, IntegerPart)
 {
 	RealNumber x = 25.5;
-	EXPECT_EQ(x.getIntegerPart(), 25);
-	EXPECT_EQ(x.getDecimalPart(), 0.5);
+	EXPECT_EQ(x.get_integer_part(), 25);
+	EXPECT_EQ(x.get_decimal_part(), 0.5);
 	x = -x;
-	EXPECT_EQ(x.getIntegerPart(), -25);
-	EXPECT_EQ(x.getDecimalPart(), -0.5);
+	EXPECT_EQ(x.get_integer_part(), -25);
+	EXPECT_EQ(x.get_decimal_part(), -0.5);
 }
 

@@ -2,7 +2,7 @@
 // Name        : DefaultConsole
 // Author      : Riyufuchi
 // Created on  : Feb 19, 2024
-// Last Edit   : Dec 22, 2025
+// Last Edit   : Jan 13, 2026
 // Description : This class contains methods for working with a Linux console
 //============================================================================
 
@@ -13,32 +13,32 @@ namespace consolelib
 DefaultConsole::DefaultConsole()
 {
 }
-void DefaultConsole::disableCustomBG() const
+void DefaultConsole::disable_custom_bg() const
 {
 }
-void DefaultConsole::enableCustomBG(const Color&) const
+void DefaultConsole::enable_custom_bg(const Color&) const
 {
 }
-void DefaultConsole::disableCustomFG() const
+void DefaultConsole::disable_custom_fg() const
 {
 	//std::cout << "Nothing to reset\n";
 }
-void DefaultConsole::enableCustomFG() const
+void DefaultConsole::enable_custom_fg() const
 {
 	//std::cout << "Default console have already output in default color\n";
 }
-void DefaultConsole::enableCustomFG([[maybe_unused]] const Color& color) const
+void DefaultConsole::enable_custom_fg([[maybe_unused]] const Color& color) const
 {
 	//std::cout << "Color [" << color.red << ";" << color.green << ";" << color.blue << "] can't be set by default console\n";
 }
-void DefaultConsole::setDefaultTextColor([[maybe_unused]] Color color)
+void DefaultConsole::set_default_fg_color([[maybe_unused]] Color color)
 {
 }
 void DefaultConsole::out(const std::string& text) const
 {
 	std::cout << text;
 }
-void DefaultConsole::outHighlighted(const std::string& text) const
+void DefaultConsole::out_highlighted(const std::string& text) const
 {
 	std::cout << "! " << text << " !";
 

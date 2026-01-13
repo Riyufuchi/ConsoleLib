@@ -2,7 +2,7 @@
 // File       : RealNumber.cpp
 // Author     : riyufuchi
 // Created on : Jun 16, 2025
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: consolelib
 //==============================================================================
@@ -26,12 +26,12 @@ std::ostream& operator<<(std::ostream& os, const RealNumber& rn)
 	return os << rn.number;
 }
 
-realNumberType RealNumber::getValue() const
+realNumberType RealNumber::get_value() const
 {
 	return number;
 }
 
-std::string RealNumber::toString() const
+std::string RealNumber::to_string() const
 {
 	std::ostringstream oss;
 	oss << std::fixed << std::setprecision(PRECISION) << number; // High precision to keep accuracy
@@ -46,12 +46,12 @@ std::string RealNumber::toString() const
 	return str;
 }
 
-realNumberType RealNumber::getIntegerPart() const
+realNumberType RealNumber::get_integer_part() const
 {
 	return std::trunc(number); //static_cast<realNumberType>(static_cast<long long>(number));
 }
 
-realNumberType RealNumber::getDecimalPart() const
+realNumberType RealNumber::get_decimal_part() const
 {
 	return number - std::trunc(number); //static_cast<realNumberType>(static_cast<long long>(number));
 }

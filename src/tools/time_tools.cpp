@@ -2,7 +2,7 @@
 // File       : TimeUtils.cpp
 // Author     : Riyufuchi
 // Created on : Mar 26, 2024
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: consoleart
 //==============================================================================
@@ -12,7 +12,7 @@
 namespace consolelib::time_tools
 {
 
-TimeStamp convertMillis(long millis)
+TimeStamp convert_millis(long millis)
 {
 	TimeStamp tTime;
 	tTime.seconds = millis / 1000;
@@ -21,15 +21,15 @@ TimeStamp convertMillis(long millis)
 	tTime.seconds = tTime.seconds % 60;
 	return tTime;
 }
-long convertToMinutes(TimeStamp& timeStamp)
+long convert_to_minutes(const TimeStamp& timeStamp)
 {
 	return timeStamp.minutes + (timeStamp.seconds / 60) + (timeStamp.hours * 60);
 }
-long convertToHours(TimeStamp& timeStamp)
+long convert_to_hours(const TimeStamp& timeStamp)
 {
 	return timeStamp.hours + (timeStamp.seconds / 3600) + (timeStamp.minutes / 60);
 }
-Date todaysDate()
+Date today_date()
 {
 	std::time_t currentTime = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()); // Convert the time point to a time_t object
 	std::tm* localTime = std::localtime(&currentTime); // Convert the time_t object to a struct tm object
@@ -39,7 +39,7 @@ Date todaysDate()
 	//today.day = localTime->tm_mday; // tm_mday is day of the month
 	return Date{localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900};
 }
-std::string dateToString(const Date& date)
+std::string date_to_string(const Date& date)
 {
 	std::ostringstream oss;
 	oss << std::setw(2) << std::setfill('0') << date.day << "."

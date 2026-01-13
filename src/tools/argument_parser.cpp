@@ -2,7 +2,7 @@
 // File       : ArgumentParser.cpp
 // Author     : riyufuchi
 // Created on : Apr 06, 2025
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: consolelib
 //==============================================================================
@@ -12,9 +12,9 @@
 namespace consolelib
 {
 
-void ArgumentParser::printArgumentPairs(const argMap& argPairs)
+void ArgumentParser::print_argument_pairs(const argMap& arg_pairs)
 {
-	for (const auto& [key, values] : argPairs)
+	for (const auto& [key, values] : arg_pairs)
 	{
 		std::cout << key << ": [";
 		for (size_t i = 0; i < values.size(); ++i)
@@ -29,9 +29,9 @@ void ArgumentParser::printArgumentPairs(const argMap& argPairs)
 	}
 }
 
-void ArgumentParser::printArgumentPairs(const argVector& argPairs)
+void ArgumentParser::print_argument_pairs(const argVector& arg_pairs)
 {
-	for (const argVectorItem& argument : argPairs)
+	for (const argVectorItem& argument : arg_pairs)
 	{
 		std::cout << argument.first << ": [";
 		for (size_t i = 0; i < argument.second.size(); ++i)
@@ -46,9 +46,9 @@ void ArgumentParser::printArgumentPairs(const argVector& argPairs)
 	}
 }
 
-bool ArgumentParser::contains(const argVector& argPairs, const std::string& value)
+bool ArgumentParser::contains(const argVector& arg_pairs, const std::string& value)
 {
-	for (const argVectorItem& argument : argPairs)
+	for (const argVectorItem& argument : arg_pairs)
 	{
 		if (argument.first == value)
 			return true;
@@ -56,14 +56,14 @@ bool ArgumentParser::contains(const argVector& argPairs, const std::string& valu
 	return false;
 }
 
-bool ArgumentParser::remove(argVector& argPairs, const std::string& value)
+bool ArgumentParser::remove(argVector& arg_pairs, const std::string& value)
 {
 	int id = 0;
-	for (argVectorItem& argument : argPairs)
+	for (argVectorItem& argument : arg_pairs)
 	{
 		if (argument.first == value)
 		{
-			argPairs.erase(argPairs.begin() + id);
+			arg_pairs.erase(arg_pairs.begin() + id);
 			return true;
 		}
 		id++;
@@ -117,7 +117,7 @@ argMap ArgumentParser::analyze(int argc, char** argv, bool& success, std::string
 	return arguments;
 }
 
-argVector ArgumentParser::analyzeInOrder(int argc, char** argv, bool& success, std::string& message)
+argVector ArgumentParser::analyze_in_order(int argc, char** argv, bool& success, std::string& message)
 {
 	argVector arguments;
 	success = true;

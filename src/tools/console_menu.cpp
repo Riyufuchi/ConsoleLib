@@ -2,7 +2,7 @@
 // File       : ConsoleCallbackMenu.cpp
 // Author     : riyufuchi
 // Created on : Mar 15, 2025
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2025, riyufuchi
 // Description: consolelib
 //==============================================================================
@@ -12,7 +12,8 @@
 namespace consolelib
 {
 
-ConsoleMenu::ConsoleMenu(IConsole& console, std::vector<std::string>& menu, std::function<void()> printHeader) : console(console), menu(menu), printHeader(printHeader), runMenu(true), highlightedOptionID(0), key(' ')
+ConsoleMenu::ConsoleMenu(IConsole& console, std::vector<std::string>& menu, std::function<void()> print_header_function) : console(console), menu(menu), print_header_function(print_header_function),
+	run_menu(true), highlighted_option_id(0), key(' ')
 {
 }
 
@@ -20,7 +21,7 @@ ConsoleMenu::~ConsoleMenu()
 {
 }
 
-void ConsoleMenu::flushInputBuffer()
+void ConsoleMenu::flush_input_buffer()
 {
 #ifdef _WIN32
 	while (_kbhit()) _getch(); // clears typed characters
@@ -30,7 +31,7 @@ void ConsoleMenu::flushInputBuffer()
 }
 
 #ifdef _WIN32
-ConsoleMenu::KeyType ConsoleMenu::obtainKeyType()
+ConsoleMenu::KeyType ConsoleMenu::obtain_key_type()
 {
 	key = getch();
 
@@ -50,7 +51,7 @@ ConsoleMenu::KeyType ConsoleMenu::obtainKeyType()
 	return KeyType::UNKNOWN;
 }
 #else
-ConsoleMenu::KeyType ConsoleMenu::obtainKeyType()
+ConsoleMenu::KeyType ConsoleMenu::obtain_key_type()
 {
 	key = getch();
 	if (key == 27) // Escape sequence starts with ESC (27)
@@ -74,38 +75,38 @@ ConsoleMenu::KeyType ConsoleMenu::obtainKeyType()
 }
 #endif
 
-int ConsoleMenu::runMenuLoop()
+int ConsoleMenu::run_menu_loop()
 {
-	runMenu = true; // loop must runs every time this function is called
+	run_menu = true; // loop must runs every time this function is called
 	if (menu.empty())
-		runMenu = false;
+		run_menu = false;
 	key = ' ';
-	highlightedOptionID = 0;
-	disableLineBuffering();
-	flushInputBuffer();
-	while (runMenu)
+	highlighted_option_id = 0;
+	disable_line_buffering();
+	flush_input_buffer();
+	while (run_menu)
 	{
-		clearConsole();
-		printHeader();
-		printMenu();
-		switch (obtainKeyType())
+		clear_console();
+		print_header_function();
+		print_menu();
+		switch (obtain_key_type())
 		{
-			case KeyType::ARROW_UP: highlightedOptionID = (highlightedOptionID + menu.size() - 1) % menu.size(); break; // Up Arrow
-			case KeyType::ARROW_DOWN: highlightedOptionID = (highlightedOptionID + 1) % menu.size(); break; // Down Arrow
-			case KeyType::ENTER: runMenu = false; break;
+			case KeyType::ARROW_UP: highlighted_option_id = (highlighted_option_id + menu.size() - 1) % menu.size(); break; // Up Arrow
+			case KeyType::ARROW_DOWN: highlighted_option_id = (highlighted_option_id + 1) % menu.size(); break; // Down Arrow
+			case KeyType::ENTER: run_menu = false; break;
 			default: break;
 		}
 	}
-	enableLineBuffering();
-	return highlightedOptionID;
+	enable_line_buffering();
+	return highlighted_option_id;
 }
 
-void ConsoleMenu::printMenu()
+void ConsoleMenu::print_menu()
 {
 	for (size_t i = 0; i < menu.size(); ++i)
 	{
-		if (i == highlightedOptionID)
-			console.outHighlighted(menu[i]);
+		if (i == highlighted_option_id)
+			console.out_highlighted(menu[i]);
 		else
 			console.out(menu[i]);
 		std::cout << "\n";
@@ -114,7 +115,7 @@ void ConsoleMenu::printMenu()
 
 // Disable line buffering for non-blocking input
 // Windows doesn't need to disable buffering; _kbhit() works out of the box.
-void ConsoleMenu::disableLineBuffering()
+void ConsoleMenu::disable_line_buffering()
 {
 #ifndef _WIN32 
 	struct termios oldt, newt;
@@ -126,7 +127,7 @@ void ConsoleMenu::disableLineBuffering()
 }
 
 // Enable line buffering after reading input
-void ConsoleMenu::enableLineBuffering()
+void ConsoleMenu::enable_line_buffering()
 {
 #ifndef _WIN32
 	struct termios oldt, newt;
@@ -148,12 +149,12 @@ char ConsoleMenu::getch()
 	#endif
 }
 
-void ConsoleMenu::exitMenuLoop()
+void ConsoleMenu::exit_menu_loop()
 {
-	runMenu = false;
+	run_menu = false;
 }
 
-void ConsoleMenu::clearConsole()
+void ConsoleMenu::clear_console()
 {
 	#ifdef _WIN32
 		system("cls"); // Windows

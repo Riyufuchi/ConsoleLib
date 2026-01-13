@@ -2,7 +2,7 @@
 // File       : DataUtils.cpp
 // Author     : riyufuchi
 // Created on : Mar 08, 2024
-// Last edit  : Dec 22, 2025
+// Last edit  : Jan 13, 2026
 // Copyright  : Copyright (c) 2024, riyufuchi
 // Description: consolelib
 //==============================================================================
@@ -11,7 +11,7 @@
 
 namespace consolelib::data_tools
 {
-bool isNumber(const std::string& s)
+bool is_number(const std::string& s)
 {
 	if (s.empty())
 		return false;
@@ -38,7 +38,7 @@ bool isNumber(const std::string& s)
 		return false;
 	return true;
 }
-bool isDouble(const std::string& s)
+bool is_double(const std::string& s)
 {
 	if (s.empty())
 		return false; // Empty string is not a valid number
@@ -78,7 +78,7 @@ bool isDouble(const std::string& s)
 	return true;
 }
 
-std::string boolToString(bool value)
+std::string bool_to_string(bool value)
 {
 	return value ? "Yes" : "No";
 }
