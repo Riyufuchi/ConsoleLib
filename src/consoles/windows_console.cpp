@@ -6,7 +6,7 @@
 //============================================================================
 
 #ifdef _WIN32
-#include "../consolelib/windows_console.h"
+#include "../consolelib/consoles/windows_console.h"
 
 namespace consolelib
 {
