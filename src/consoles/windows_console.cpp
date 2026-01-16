@@ -2,7 +2,7 @@
 // Name        : WindowsConsole
 // Author      : Riyufuchi
 // Created on  : Feb 28, 2024
-// Last Edit   : Dec 22, 2025
+// Last Edit   : Jan 16, 2026
 //============================================================================
 
 #ifdef _WIN32
@@ -16,7 +16,7 @@ namespace consolelib
 		// Enabling UNICODE
 		SetConsoleOutputCP(CP_UTF8);
 		SetConsoleCP(CP_UTF8);
-		setDefaultTextColor(Color{ 204, 204, 204 });
+		set_default_fg_color(Color{ 204, 204, 204 });
 	}
 
 	WindowsConsole::~WindowsConsole()
