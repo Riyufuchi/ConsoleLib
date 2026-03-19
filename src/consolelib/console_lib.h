@@ -16,7 +16,7 @@
 
 namespace consolelib
 {
-inline constexpr const char* VERSION = "7.3";
+inline constexpr const char* VERSION = "7.4";
 inline constexpr const char* COPYRIGHT_HEADER = "Riyufuchi (c) 2023 - 2026";
 std::string aboutLibrary();
 }

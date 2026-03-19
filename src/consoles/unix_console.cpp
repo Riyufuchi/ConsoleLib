@@ -14,6 +14,10 @@ UnixConsole::UnixConsole() : defaultColor(Color{5, 195, 221})
 {
 	set_default_fg_color(defaultColor);
 }
+UnixConsole::~UnixConsole()
+{
+	std::cout << "Destructed Unix console\n";
+}
 void UnixConsole::disable_custom_bg() const
 {
 	std::cout << RESET;
@@ -74,10 +78,6 @@ void UnixConsole::err(const Color& color, const std::string& text) const
 void UnixConsole::err(short int r, short int g, short int b, const std::string& text) const
 {
 	std::cerr << "\x1B[38;2;" << r << ";" << g << ";" << b << "m" << text << "\x1B[m";
-}
-UnixConsole::~UnixConsole()
-{
-	std::cout << "Destructed Unix console\n";
 }
 
 }
